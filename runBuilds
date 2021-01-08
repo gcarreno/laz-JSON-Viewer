@@ -9,6 +9,8 @@ LPIFILE=${HERE}/src/lazJSONViewer.lpi
 
 DISTPATH=${HERE}/bin/dist
 
+mkdir -p ${DISTPATH}
+
 DIRLIN64=${HERE}/bin/linux/x86_64
 LOGLIN64=${DISTPATH}/LogLin64.txt
 
