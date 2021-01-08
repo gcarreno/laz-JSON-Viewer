@@ -1,0 +1,11 @@
+{
+	"TestNull" : null,
+	"TestInteger" : 120,
+	"TestFloat" : 120.3,
+	"TestString" : "String Value",
+	"TestBoolean" : false,
+	"TestArray" : [ null, 1, 2.2, "String Value", true ],
+	"TestObject" : {
+		"TestObjectString" : "String Value"
+	}
+}

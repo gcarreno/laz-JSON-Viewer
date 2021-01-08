@@ -313,7 +313,8 @@ end;
 procedure TfrmMain.LoadFile;
 const
   //cTestFile = '/home/gcarreno/Programming/Fastpool/data/fastpool.pascal.stats-address.longpoll-true.json';
-  cTestFile = '/home/gcarreno/Programming/TraktTV-API/data/ncis.S18.json';
+  //cTestFile = '/home/gcarreno/Programming/TraktTV-API/data/ncis.S18.json';
+  cTestFile = '../data/test1.json';
 var
   JSONFileStream: TFileStream;
 begin
