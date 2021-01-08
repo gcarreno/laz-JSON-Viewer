@@ -28,8 +28,9 @@ object frmMain: TfrmMain
       Header.Columns = <      
         item
           Position = 0
-          Width = 200
+          Width = 655
         end>
+      Header.Options = [hoAutoResize, hoColumnResize, hoDrag, hoShowSortGlyphs]
       TabOrder = 0
       OnChange = vstJSONChange
       OnGetText = vstJSONGetText
