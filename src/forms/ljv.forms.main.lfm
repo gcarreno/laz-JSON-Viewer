@@ -8,7 +8,9 @@ object frmMain: TfrmMain
   ClientWidth = 1017
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  LCLVersion = '2.1.0.0'
   object psMain: TPairSplitter
+    Cursor = crDefault
     Left = 0
     Height = 563
     Top = 0
@@ -16,7 +18,6 @@ object frmMain: TfrmMain
     Align = alClient
     Position = 400
     object pssTree: TPairSplitterSide
-      Cursor = crArrow
       Left = 0
       Height = 563
       Top = 0
@@ -34,7 +35,7 @@ object frmMain: TfrmMain
         Header.Columns = <        
           item
             Position = 0
-            Width = 398
+            Width = 400
           end>
         Header.Options = [hoAutoResize, hoColumnResize, hoDrag, hoShowSortGlyphs]
         TabOrder = 0
@@ -44,7 +45,6 @@ object frmMain: TfrmMain
       end
     end
     object pssNode: TPairSplitterSide
-      Cursor = crArrow
       Left = 405
       Height = 563
       Top = 0

@@ -61,6 +61,7 @@ type
   private
     FJSON: TJSONData;
 
+    procedure CorrectPSCursor;
     procedure LoadFile;
     procedure UpdateTree;
     procedure UpdateTreeFromNode(const ANode: PVirtualNode;
@@ -89,6 +90,7 @@ uses
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  CorrectPSCursor;
   LoadFile;
   UpdateTree;
 end;
@@ -242,13 +244,13 @@ begin
                   jNull:= treeNode^.NodeData as TJSONNull;
                   if Length(treeNode^.NodeName) > 0 then
                   begin
-                    CellText:= Format('%s: %s', [treeNode^.NodeName, jNull.AsString]);
+                    CellText:= Format('%s: %s', [treeNode^.NodeName, 'null']);
                   end
                   else
                   begin
                     if treeNode^.NodeIndex > -1 then
                     begin
-                      CellText:= Format('%d: %s', [treeNode^.NodeIndex, jNull.AsString]);
+                      CellText:= Format('%d: %s', [treeNode^.NodeIndex, 'null']);
                     end
                     else
                     begin
@@ -301,9 +303,17 @@ begin
   end;
 end;
 
+procedure TfrmMain.CorrectPSCursor;
+begin
+  psMain.Cursor:= crHSplit;
+  pssTree.Cursor:= crDefault;
+  pssNode.Cursor:= crDefault;
+end;
+
 procedure TfrmMain.LoadFile;
 const
-  cTestFile = '/home/gcarreno/Programming/Fastpool/data/fastpool.pascal.stats-address.longpoll-true.json';
+  //cTestFile = '/home/gcarreno/Programming/Fastpool/data/fastpool.pascal.stats-address.longpoll-true.json';
+  cTestFile = '/home/gcarreno/Programming/TraktTV-API/data/ncis.S18.json';
 var
   JSONFileStream: TFileStream;
 begin
