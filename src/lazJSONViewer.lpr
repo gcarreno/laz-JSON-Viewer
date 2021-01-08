@@ -32,7 +32,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, LJV.Forms.Main
+  Forms, LJV.Forms.Main, LJV.Tree.Nodes
   { you can add units after this };
 
 {$R *.res}

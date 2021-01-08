@@ -23,7 +23,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="forms"/>
+            <OtherUnitFiles Value="forms;json;tree"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -63,7 +63,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="forms"/>
+            <OtherUnitFiles Value="forms;json;tree"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -94,7 +94,7 @@
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
             <Libraries Value="/usr/lib/gcc/i686-linux-gnu/9/"/>
-            <OtherUnitFiles Value="forms"/>
+            <OtherUnitFiles Value="forms;json;tree"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -147,6 +147,16 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LJV.Forms.Main"/>
       </Unit>
+      <Unit>
+        <Filename Value="json/ljv.json.utils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="LJV.JSON.Utils"/>
+      </Unit>
+      <Unit>
+        <Filename Value="tree/ljv.tree.nodes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="LJV.Tree.Nodes"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -156,7 +166,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="forms"/>
+      <OtherUnitFiles Value="forms;json;tree"/>
       <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
