@@ -8,83 +8,83 @@ object frmMain: TfrmMain
   ClientWidth = 1017
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  object panTree: TPanel
+  object psMain: TPairSplitter
     Left = 0
     Height = 563
     Top = 0
-    Width = 659
-    Align = alLeft
-    ClientHeight = 563
-    ClientWidth = 659
-    TabOrder = 0
-    object vstJSON: TLazVirtualStringTree
-      Left = 1
-      Height = 561
-      Top = 1
-      Width = 657
-      Align = alClient
-      DefaultText = 'Node'
-      Header.AutoSizeIndex = 0
-      Header.Columns = <      
-        item
-          Position = 0
-          Width = 655
-        end>
-      Header.Options = [hoAutoResize, hoColumnResize, hoDrag, hoShowSortGlyphs]
-      TabOrder = 0
-      OnChange = vstJSONChange
-      OnGetText = vstJSONGetText
-      OnGetNodeDataSize = vstJSONGetNodeDataSize
-    end
-  end
-  object splVertical: TSplitter
-    Left = 659
-    Height = 563
-    Top = 0
-    Width = 5
-  end
-  object panContainer: TPanel
-    Left = 664
-    Height = 563
-    Top = 0
-    Width = 353
+    Width = 1017
     Align = alClient
-    ClientHeight = 563
-    ClientWidth = 353
-    TabOrder = 2
-    object panItem: TPanel
-      Left = 1
-      Height = 143
-      Top = 1
-      Width = 351
-      Align = alTop
-      ClientHeight = 143
-      ClientWidth = 351
-      TabOrder = 0
-      object lblType: TLabel
-        Left = 8
-        Height = 1
-        Top = 8
-        Width = 1
-        ParentColor = False
+    Position = 400
+    object pssTree: TPairSplitterSide
+      Cursor = crArrow
+      Left = 0
+      Height = 563
+      Top = 0
+      Width = 400
+      ClientWidth = 400
+      ClientHeight = 563
+      object vstJSON: TLazVirtualStringTree
+        Left = 0
+        Height = 563
+        Top = 0
+        Width = 400
+        Align = alClient
+        DefaultText = 'Node'
+        Header.AutoSizeIndex = 0
+        Header.Columns = <        
+          item
+            Position = 0
+            Width = 398
+          end>
+        Header.Options = [hoAutoResize, hoColumnResize, hoDrag, hoShowSortGlyphs]
+        TabOrder = 0
+        OnChange = vstJSONChange
+        OnGetText = vstJSONGetText
+        OnGetNodeDataSize = vstJSONGetNodeDataSize
       end
     end
-    object splHorizontal: TSplitter
-      Cursor = crVSplit
-      Left = 1
-      Height = 5
-      Top = 144
-      Width = 351
-      Align = alTop
-      ResizeAnchor = akTop
-    end
-    object panProperties: TPanel
-      Left = 1
-      Height = 413
-      Top = 149
-      Width = 351
-      Align = alClient
-      TabOrder = 2
+    object pssNode: TPairSplitterSide
+      Cursor = crArrow
+      Left = 405
+      Height = 563
+      Top = 0
+      Width = 612
+      ClientWidth = 612
+      ClientHeight = 563
+      object panItem: TPanel
+        Left = 0
+        Height = 66
+        Top = 0
+        Width = 612
+        Align = alTop
+        ClientHeight = 66
+        ClientWidth = 612
+        TabOrder = 0
+        object lblType: TLabel
+          Left = 8
+          Height = 17
+          Top = 8
+          Width = 72
+          Caption = 'Node Type'
+          ParentColor = False
+        end
+        object lblName: TLabel
+          Left = 8
+          Height = 17
+          Top = 32
+          Width = 122
+          Caption = 'Node Name/Index'
+          ParentColor = False
+        end
+      end
+      object panProperties: TPanel
+        Left = 1
+        Height = 963
+        Top = 72
+        Width = 1587
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        TabOrder = 1
+      end
     end
   end
 end

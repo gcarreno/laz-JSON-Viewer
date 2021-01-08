@@ -33,7 +33,7 @@ uses
 , Controls
 , Graphics
 , Dialogs
-, ExtCtrls, StdCtrls
+, ExtCtrls, StdCtrls, PairSplitter
 , fpjson
 , laz.VirtualTrees
 ;
@@ -43,14 +43,14 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    lblName: TLabel;
     lblType: TLabel;
+    psMain: TPairSplitter;
+    pssTree: TPairSplitterSide;
+    pssNode: TPairSplitterSide;
     vstJSON: TLazVirtualStringTree;
-    panContainer: TPanel;
     panProperties: TPanel;
     panItem: TPanel;
-    panTree: TPanel;
-    splHorizontal: TSplitter;
-    splVertical: TSplitter;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure vstJSONChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
@@ -104,12 +104,24 @@ end;
 procedure TfrmMain.vstJSONChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
 var
   treeNode: PTreeNode;
+  sName: String;
+  iIndex: Int64;
 begin
   if Assigned(Node) then
   begin
     treeNode:= vstJSON.GetNodeData(Node);
     if Assigned(treeNode) then
     begin
+      sName:= treeNode^.NodeName;
+      iIndex:= treeNode^.NodeIndex;
+      if Length(sName) > 0 then
+      begin
+        lblName.Caption:= Format('Name: %s', [sName])
+      end;
+      if iIndex > -1 then
+      begin
+        lblName.Caption:= Format('Index: %d', [iIndex])
+      end;
       case treeNode^.NodeType of
         jtUnknown:begin
           lblType.Caption:= 'Type: Unknown';
