@@ -8,16 +8,16 @@ object frmMain: TfrmMain
   ClientWidth = 1017
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.1.0.0'
   object psMain: TPairSplitter
     Cursor = crDefault
-    Left = 0
+    Left = 224
     Height = 563
     Top = 0
-    Width = 1017
+    Width = 793
     Align = alClient
     Position = 400
     object pssTree: TPairSplitterSide
+      Cursor = crArrow
       Left = 0
       Height = 563
       Top = 0
@@ -35,35 +35,37 @@ object frmMain: TfrmMain
         Header.Columns = <        
           item
             Position = 0
-            Width = 400
+            Width = 398
           end>
         Header.Options = [hoAutoResize, hoColumnResize, hoDrag, hoShowSortGlyphs]
         TabOrder = 0
+        TreeOptions.SelectionOptions = [toExtendedFocus]
         OnChange = vstJSONChange
         OnGetText = vstJSONGetText
         OnGetNodeDataSize = vstJSONGetNodeDataSize
       end
     end
     object pssNode: TPairSplitterSide
+      Cursor = crArrow
       Left = 405
       Height = 563
       Top = 0
-      Width = 612
-      ClientWidth = 612
+      Width = 388
+      ClientWidth = 388
       ClientHeight = 563
       object panItem: TPanel
         Left = 0
-        Height = 66
+        Height = 80
         Top = 0
-        Width = 612
+        Width = 388
         Align = alTop
-        ClientHeight = 66
-        ClientWidth = 612
+        ClientHeight = 80
+        ClientWidth = 388
         TabOrder = 0
         object lblType: TLabel
           Left = 8
           Height = 17
-          Top = 8
+          Top = 32
           Width = 72
           Caption = 'Node Type'
           ParentColor = False
@@ -71,20 +73,49 @@ object frmMain: TfrmMain
         object lblName: TLabel
           Left = 8
           Height = 17
-          Top = 32
+          Top = 8
           Width = 122
           Caption = 'Node Name/Index'
           ParentColor = False
         end
+        object lblCount: TLabel
+          Left = 8
+          Height = 17
+          Top = 56
+          Width = 100
+          Caption = 'Member Count'
+          ParentColor = False
+        end
       end
-      object panProperties: TPanel
-        Left = 1
-        Height = 963
-        Top = 72
-        Width = 1587
+      object panValue: TPanel
+        Left = 0
+        Height = 475
+        Top = 88
+        Width = 388
+        Align = alBottom
         Anchors = [akTop, akLeft, akRight, akBottom]
         TabOrder = 1
       end
     end
+  end
+  object lbFiles: TListBox
+    Left = 0
+    Height = 563
+    Top = 0
+    Width = 219
+    Align = alLeft
+    ItemHeight = 0
+    OnSelectionChange = lbFilesSelectionChange
+    ParentShowHint = False
+    ScrollWidth = 217
+    ShowHint = True
+    TabOrder = 1
+    TopIndex = -1
+  end
+  object Splitter1: TSplitter
+    Left = 219
+    Height = 563
+    Top = 0
+    Width = 5
   end
 end

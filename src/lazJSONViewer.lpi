@@ -124,7 +124,17 @@
       <UseFileFilters Value="True"/>
     </PublishOptions>
     <RunParams>
+      <local>
+        <CommandLineParams Value="/home/gcarreno/Programming/Fastpool/data/fastpool.pascal.stats-address.longpoll-true.json"/>
+      </local>
       <FormatVersion Value="2"/>
+      <Modes>
+        <Mode Name="default">
+          <local>
+            <CommandLineParams Value="/home/gcarreno/Programming/Fastpool/data/fastpool.pascal.stats-address.longpoll-true.json"/>
+          </local>
+        </Mode>
+      </Modes>
     </RunParams>
     <RequiredPackages>
       <Item>

@@ -43,16 +43,20 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    lblCount: TLabel;
     lblName: TLabel;
     lblType: TLabel;
+    lbFiles: TListBox;
     psMain: TPairSplitter;
     pssTree: TPairSplitterSide;
     pssNode: TPairSplitterSide;
+    Splitter1: TSplitter;
     vstJSON: TLazVirtualStringTree;
-    panProperties: TPanel;
+    panValue: TPanel;
     panItem: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure lbFilesSelectionChange(Sender: TObject; User: boolean);
     procedure vstJSONChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure vstJSONGetNodeDataSize(Sender: TBaseVirtualTree;
       var NodeDataSize: Integer);
@@ -60,12 +64,16 @@ type
       Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
   private
     FJSON: TJSONData;
+    FFileList: Array of String;
 
     procedure CorrectPSCursor;
-    procedure LoadFile;
+    procedure ProcessParams;
+    procedure UpdateFileList;
+    procedure LoadFile(const AFilename: String);
     procedure UpdateTree;
     procedure UpdateTreeFromNode(const ANode: PVirtualNode;
       const AJSONData: TJSONData);
+    procedure ShowValue(const AJSONData: TJSONData);
   public
 
   end;
@@ -91,8 +99,12 @@ uses
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   CorrectPSCursor;
-  LoadFile;
-  UpdateTree;
+  ProcessParams;
+  UpdateFileList;
+  if lbFiles.Items.Count > 0 then
+  begin
+    lbFiles.ItemIndex:= 0;
+  end;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -103,11 +115,31 @@ begin
   end;
 end;
 
+procedure TfrmMain.lbFilesSelectionChange(Sender: TObject; User: boolean);
+var
+  index: Integer;
+begin
+  if lbFiles.ItemIndex > -1 then
+  begin
+    Caption:= Format('JSON Viewer (%s)', [FFileList[lbFiles.ItemIndex]]);
+    lblType.Caption:= 'Node Type';
+    lblName.Caption:= 'Node Name/Index';
+    lblCount.Caption:= 'Member Count';
+    for index:=0 to pred(panValue.ComponentCount) do
+    begin
+      panValue.Components[index].Free;
+    end;
+    LoadFile(FFileList[lbFiles.ItemIndex]);
+    UpdateTree;
+  end;
+end;
+
 procedure TfrmMain.vstJSONChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
 var
   treeNode: PTreeNode;
   sName: String;
   iIndex: Int64;
+  count: Integer;
 begin
   if Assigned(Node) then
   begin
@@ -118,7 +150,7 @@ begin
       iIndex:= treeNode^.NodeIndex;
       if Length(sName) > 0 then
       begin
-        lblName.Caption:= Format('Name: %s', [sName])
+        lblName.Caption:= Format('Name: "%s"', [sName])
       end;
       if iIndex > -1 then
       begin
@@ -127,26 +159,36 @@ begin
       case treeNode^.NodeType of
         jtUnknown:begin
           lblType.Caption:= 'Type: Unknown';
+          lblCount.Caption:= 'N/A';
         end;
         jtNumber:begin
           lblType.Caption:= 'Type: Number';
+          lblCount.Caption:= 'N/A';
         end;
         jtString:begin
           lblType.Caption:= 'Type: String';
+          lblCount.Caption:= 'N/A';
         end;
         jtBoolean:begin
           lblType.Caption:= 'Type: Boolean';
+          lblCount.Caption:= 'N/A';
         end;
         jtNull:begin
           lblType.Caption:= 'Type: Null';
+          lblCount.Caption:= 'N/A';
         end;
         jtArray:begin
           lblType.Caption:= 'Type: Array';
+          count:= TJSONArray(treeNode^.NodeData).Count;
+          lblCount.Caption:= Format('Items: %d', [count]);
         end;
         jtObject:begin
           lblType.Caption:= 'Type: Object';
+          count:= TJSONObject(treeNode^.NodeData).Count;
+          lblCount.Caption:= Format('Members: %d', [count]);
         end;
       end;
+      ShowValue(treeNode^.NodeData);
     end;
   end;
 end;
@@ -310,16 +352,50 @@ begin
   pssNode.Cursor:= crDefault;
 end;
 
-procedure TfrmMain.LoadFile;
-const
-  //cTestFile = '/home/gcarreno/Programming/Fastpool/data/fastpool.pascal.stats-address.longpoll-true.json';
-  //cTestFile = '/home/gcarreno/Programming/TraktTV-API/data/ncis.S18.json';
-  cTestFile = '../data/test1.json';
+procedure TfrmMain.ProcessParams;
+var
+  index: Integer;
+  len: Integer;
+  params: Integer;
+  param: String;
+begin
+  params:= ParamCount;
+  for index:= 1 to params do
+  begin
+    param:=ParamStr(index);
+    if Pos('*', param) > 0 then
+    begin
+      // Get all files
+    end
+    else
+    begin
+      len:= Length(FFileList);
+      SetLength(FFileList, len + 1);
+      FFileList[len]:= param;
+    end;
+  end;
+end;
+
+procedure TfrmMain.UpdateFileList;
+var
+  filename: String;
+begin
+  for filename in FFileList do
+  begin
+    lbFiles.Items.Add(ExtractFileName(filename));
+  end;
+end;
+
+procedure TfrmMain.LoadFile(const AFilename: String);
 var
   JSONFileStream: TFileStream;
 begin
-  JSONFileStream:= TFileStream.Create(cTestFile, fmOpenRead);
+  JSONFileStream:= TFileStream.Create(AFilename, fmOpenRead);
   try
+    if Assigned(FJSON) then
+    begin
+      FJSON.Free;
+    end;
     FJSON:= GetJSONData(JSONFileStream);
   finally
     JSONFileStream.Free;
@@ -329,6 +405,7 @@ end;
 procedure TfrmMain.UpdateTree;
 begin
   vstJSON.BeginUpdate;
+  vstJSON.Clear;
   UpdateTreeFromNode(vstJSON.RootNode, FJSON);
   vstJSON.EndUpdate;
 end;
@@ -378,6 +455,69 @@ begin
           UpdateTreeFromNode(node, AJSONData.Items[index]);
         end;
       end;
+    end;
+  end;
+end;
+
+procedure TfrmMain.ShowValue(const AJSONData: TJSONData);
+var
+  index: Integer;
+  lbl: TLabel;
+  edt: TEdit;
+  mem: TMemo;
+begin
+  for index:= 0 to pred(panValue.ComponentCount) do
+  begin
+    panValue.Components[index].Free;
+  end;
+  case AJSONData.JSONType of
+    jtUnknown:begin
+      lbl:= TLabel.Create(panValue);
+      lbl.Parent:= panValue;
+      lbl.Top:= 8;
+      lbl.Left:= 8;
+      lbl.Caption:= 'Unknown';
+    end;
+    jtNumber:begin
+      edt:= TEdit.Create(panValue);
+      edt.Parent:= panValue;
+      edt.Top:= 8;
+      edt.Left:= 8;
+      edt.Width:= panValue.ClientWidth - 16;
+      edt.ReadOnly:= True;
+      edt.Text:= Format('%d', [AJSONData.AsInt64]);
+    end;
+    jtString:begin
+      mem:= TMemo.Create(panValue);
+      mem.Parent:= panValue;
+      mem.Top:= 8;
+      mem.Left:= 8;
+      mem.Width:= panValue.ClientWidth - 16;
+      mem.Height:= panValue.ClientHeight - 16;
+      mem.Anchors:= [akTop, akLeft, akBottom, akRight];
+      mem.ReadOnly:= True;
+      mem.ScrollBars:= ssAutoVertical;
+      mem.Lines.Text:= AJSONData.AsString;
+    end;
+    jtBoolean:begin
+      lbl:= TLabel.Create(panValue);
+      lbl.Parent:= panValue;
+      lbl.Top:= 8;
+      lbl.Left:= 8;
+      lbl.Caption:= Format('%s', [AJSONData.AsString]);
+    end;
+    jtNull:begin
+      lbl:= TLabel.Create(panValue);
+      lbl.Parent:= panValue;
+      lbl.Top:= 8;
+      lbl.Left:= 8;
+      lbl.Caption:= 'null';
+    end;
+    jtArray:begin
+
+    end;
+    jtObject:begin
+
     end;
   end;
 end;
