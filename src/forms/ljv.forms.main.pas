@@ -101,10 +101,10 @@ begin
   CorrectPSCursor;
   ProcessParams;
   UpdateFileList;
-  if lbFiles.Items.Count > 0 then
-  begin
-    lbFiles.ItemIndex:= 0;
-  end;
+  //if lbFiles.Items.Count > 0 then
+  //begin
+  //  lbFiles.ItemIndex:= 0;
+  //end;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -369,9 +369,12 @@ begin
     end
     else
     begin
-      len:= Length(FFileList);
-      SetLength(FFileList, len + 1);
-      FFileList[len]:= param;
+      if FileExists(param) then
+      begin
+        len:= Length(FFileList);
+        SetLength(FFileList, len + 1);
+        FFileList[len]:= param;
+      end;
     end;
   end;
 end;
@@ -396,7 +399,14 @@ begin
     begin
       FJSON.Free;
     end;
-    FJSON:= GetJSONData(JSONFileStream);
+    try
+      FJSON:= GetJSONData(JSONFileStream);
+    except
+      on E: Exception do
+      begin
+        ShowMessage(Format('Looks like "%s" isn''t a JSON file', [AFilename]));
+      end;
+    end;
   finally
     JSONFileStream.Free;
   end;
@@ -406,7 +416,10 @@ procedure TfrmMain.UpdateTree;
 begin
   vstJSON.BeginUpdate;
   vstJSON.Clear;
-  UpdateTreeFromNode(vstJSON.RootNode, FJSON);
+  if Assigned(FJSON) then
+  begin
+    UpdateTreeFromNode(vstJSON.RootNode, FJSON);
+  end;
   vstJSON.EndUpdate;
 end;
 
