@@ -32,14 +32,14 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, LJV.Forms.Main, LJV.Tree.Nodes
+  Forms, LJV.Forms.Main
   { you can add units after this };
 
 {$R *.res}
 
 begin
   RequireDerivedFormResource:=True;
-  Application.Title:='JSON Viewer';
+  Application.Title:='lazJSONViewer';
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);

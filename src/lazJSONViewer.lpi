@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="12"/>
+    <Version Value="11"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
-      <Title Value="JSON Viewer"/>
+      <MainUnit Value="0"/>
+      <Title Value="lazJSONViewer"/>
       <Scaled Value="True"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
@@ -13,17 +14,16 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
-    <BuildModes>
-      <Item Name="Default" Default="True"/>
-      <Item Name="Debug">
+    <BuildModes Count="4">
+      <Item1 Name="Default" Default="True"/>
+      <Item2 Name="Debug">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
             <Filename Value="../bin/lazJSONViewer"/>
           </Target>
           <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="forms;json;tree"/>
+            <OtherUnitFiles Value="forms;tree;json"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -54,16 +54,15 @@
             </Options>
           </Linking>
         </CompilerOptions>
-      </Item>
-      <Item Name="Release">
+      </Item2>
+      <Item3 Name="Release">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="../bin/$(TargetOS)/$(TargetCPU)/lazJSONViewer"/>
+            <Filename Value="../bin/$(TargetCPU)/$(TargetOS)/lazJSONViewer"/>
           </Target>
           <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="forms;json;tree"/>
+            <OtherUnitFiles Value="forms;tree;json"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -84,23 +83,20 @@
             </Options>
           </Linking>
         </CompilerOptions>
-      </Item>
-      <Item Name="Release-linux-i386">
+      </Item3>
+      <Item4 Name="Release-linux-i386">
         <CompilerOptions>
           <Version Value="11"/>
           <Target>
-            <Filename Value="../bin/$(TargetOS)/$(TargetCPU)/lazJSONViewer"/>
+            <Filename Value="../bin/$(TargetCPU)/$(TargetOS)/lazJSONViewer"/>
           </Target>
           <SearchPaths>
-            <IncludeFiles Value="$(ProjOutDir)"/>
             <Libraries Value="/usr/lib/gcc/i686-linux-gnu/9/"/>
-            <OtherUnitFiles Value="forms;json;tree"/>
+            <OtherUnitFiles Value="forms;tree;json"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
-            <TargetCPU Value="i386"/>
-            <TargetOS Value="linux"/>
             <Optimizations>
               <OptimizationLevel Value="3"/>
             </Optimizations>
@@ -117,7 +113,7 @@
             </Options>
           </Linking>
         </CompilerOptions>
-      </Item>
+      </Item4>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
@@ -125,48 +121,46 @@
     </PublishOptions>
     <RunParams>
       <local>
-        <CommandLineParams Value="/home/gcarreno/Programming/Fastpool/data/fastpool.pascal.stats-address.longpoll-true.json"/>
+        <CommandLineParams Value="/home/gcarreno/Programming/laz-JSON-Viewer/data/*.json"/>
       </local>
       <FormatVersion Value="2"/>
-      <Modes>
-        <Mode Name="default">
+      <Modes Count="1">
+        <Mode0 Name="default">
           <local>
-            <CommandLineParams Value="/home/gcarreno/Programming/Fastpool/data/fastpool.pascal.stats-address.longpoll-true.json"/>
+            <CommandLineParams Value="/home/gcarreno/Programming/laz-JSON-Viewer/data/*.json"/>
           </local>
-        </Mode>
+        </Mode0>
       </Modes>
     </RunParams>
-    <RequiredPackages>
-      <Item>
-        <PackageName Value="laz.virtualtreeview_package"/>
-      </Item>
-      <Item>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="virtualtreeview_package"/>
+      </Item1>
+      <Item2>
         <PackageName Value="LCL"/>
-      </Item>
+      </Item2>
     </RequiredPackages>
-    <Units>
-      <Unit>
+    <Units Count="4">
+      <Unit0>
         <Filename Value="lazJSONViewer.lpr"/>
         <IsPartOfProject Value="True"/>
-      </Unit>
-      <Unit>
+      </Unit0>
+      <Unit1>
         <Filename Value="forms/ljv.forms.main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmMain"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="LJV.Forms.Main"/>
-      </Unit>
-      <Unit>
-        <Filename Value="json/ljv.json.utils.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="LJV.JSON.Utils"/>
-      </Unit>
-      <Unit>
+      </Unit1>
+      <Unit2>
         <Filename Value="tree/ljv.tree.nodes.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="LJV.Tree.Nodes"/>
-      </Unit>
+      </Unit2>
+      <Unit3>
+        <Filename Value="json/ljv.json.utils.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -176,7 +170,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="forms;json;tree"/>
+      <OtherUnitFiles Value="forms;tree;json"/>
       <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
@@ -187,17 +181,4 @@
       </Options>
     </Linking>
   </CompilerOptions>
-  <Debugging>
-    <Exceptions>
-      <Item>
-        <Name Value="EAbort"/>
-      </Item>
-      <Item>
-        <Name Value="ECodetoolError"/>
-      </Item>
-      <Item>
-        <Name Value="EFOpenError"/>
-      </Item>
-    </Exceptions>
-  </Debugging>
 </CONFIG>

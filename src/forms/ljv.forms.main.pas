@@ -33,9 +33,11 @@ uses
 , Controls
 , Graphics
 , Dialogs
-, ExtCtrls, StdCtrls, PairSplitter
+, ExtCtrls
+, StdCtrls
+, PairSplitter
 , fpjson
-, laz.VirtualTrees
+, VirtualTrees
 ;
 
 type
@@ -51,7 +53,7 @@ type
     pssTree: TPairSplitterSide;
     pssNode: TPairSplitterSide;
     Splitter1: TSplitter;
-    vstJSON: TLazVirtualStringTree;
+    vstJSON: TVirtualStringTree;
     panValue: TPanel;
     panItem: TPanel;
     procedure FormCreate(Sender: TObject);
