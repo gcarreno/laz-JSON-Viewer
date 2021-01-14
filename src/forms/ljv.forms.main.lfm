@@ -3,12 +3,12 @@ object frmMain: TfrmMain
   Height = 563
   Top = 250
   Width = 1017
-  Caption = 'JSON Viewer'
+  Caption = 'frmMain'
   ClientHeight = 563
   ClientWidth = 1017
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.1.0.0'
   object psMain: TPairSplitter
     Cursor = crDefault
     Left = 224
@@ -67,24 +67,24 @@ object frmMain: TfrmMain
           Left = 8
           Height = 17
           Top = 32
-          Width = 72
-          Caption = 'Node Type'
+          Width = 49
+          Caption = 'lblType'
           ParentColor = False
         end
         object lblName: TLabel
           Left = 8
           Height = 17
           Top = 8
-          Width = 122
-          Caption = 'Node Name/Index'
+          Width = 57
+          Caption = 'lblName'
           ParentColor = False
         end
         object lblCount: TLabel
           Left = 8
           Height = 17
           Top = 56
-          Width = 100
-          Caption = 'Member Count'
+          Width = 57
+          Caption = 'lblCount'
           ParentColor = False
         end
       end

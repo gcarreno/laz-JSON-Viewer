@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <General>
+      <Flags>
+        <CompatibilityMode Value="True"/>
+      </Flags>
       <SessionStorage Value="InProjectDir"/>
-      <MainUnit Value="0"/>
       <Title Value="lazJSONViewer"/>
       <Scaled Value="True"/>
       <ResourceType Value="res"/>
@@ -14,6 +16,16 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
+    <i18n>
+      <EnableI18N Value="True"/>
+      <OutDir Value="i18n"/>
+      <ExcludedIdentifiers Count="4">
+        <Item1 Value="tfrmmain.caption"/>
+        <Item2 Value="tfrmmain.lblname.caption"/>
+        <Item3 Value="tfrmmain.lbltype.caption"/>
+        <Item4 Value="tfrmmain.lblcount.caption"/>
+      </ExcludedIdentifiers>
+    </i18n>
     <BuildModes Count="4">
       <Item1 Name="Default" Default="True"/>
       <Item2 Name="Debug">
@@ -62,6 +74,7 @@
             <Filename Value="../bin/$(TargetCPU)/$(TargetOS)/lazJSONViewer"/>
           </Target>
           <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
             <OtherUnitFiles Value="forms;tree;json"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>

@@ -68,6 +68,7 @@ type
     FJSON: TJSONData;
     FFileList: Array of String;
 
+    procedure ClearLabels;
     procedure CorrectPSCursor;
     procedure ProcessParams;
     procedure UpdateFileList;
@@ -84,8 +85,31 @@ var
   frmMain: TfrmMain;
 
 resourcestring
+  rsFormCaption = 'JSON Viewer';
+
   rsVSTUnknown = 'Unknown';
   rsVSTNoColumns = 'There are no Columns';
+
+  //rsVSTName
+
+  rsLabelTypeEmpty = 'Node Type';
+  rsLabelType = 'Type: %s';
+  rsLabelNameEmpty = 'Node Name/Index';
+  rsLabelNameName = 'Name: "%s"';
+  rsLabelNameIndex = 'Index: %s';
+  rsLabelNameArrayItem = 'Item: %d';
+  rsLabelCountEmpty = 'Member Count';
+  rsLabelCountArray = 'Items: %d';
+  rsLabelCountObject = 'Members: %d';
+  rsLabelCountNA = 'N/A';
+
+  rsTypeUnknown = 'Unknown';
+  rsTypeNumber = 'Number';
+  rsTypeString = 'String';
+  rsTypeBoolean = 'Boolean';
+  rsTypeNull = 'Null';
+  rsTypeArray = 'Array';
+  rsTypeObject = 'Object';
 
 implementation
 
@@ -100,6 +124,8 @@ uses
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  Caption:= rsFormCaption;
+  ClearLabels;
   CorrectPSCursor;
   ProcessParams;
   UpdateFileList;
@@ -123,10 +149,8 @@ var
 begin
   if lbFiles.ItemIndex > -1 then
   begin
-    Caption:= Format('JSON Viewer (%s)', [FFileList[lbFiles.ItemIndex]]);
-    lblType.Caption:= 'Node Type';
-    lblName.Caption:= 'Node Name/Index';
-    lblCount.Caption:= 'Member Count';
+    Caption:= Format('%s (%s)', [rsFormCaption, FFileList[lbFiles.ItemIndex]]);
+    ClearLabels;
     for index:=0 to pred(panValue.ComponentCount) do
     begin
       panValue.Components[index].Free;
@@ -152,42 +176,42 @@ begin
       iIndex:= treeNode^.NodeIndex;
       if Length(sName) > 0 then
       begin
-        lblName.Caption:= Format('Name: "%s"', [sName])
+        lblName.Caption:= Format(rsLabelNameName, [sName])
       end;
       if iIndex > -1 then
       begin
-        lblName.Caption:= Format('Index: %d', [iIndex])
+        lblName.Caption:= Format(rsLabelNameArrayItem, [iIndex])
       end;
       case treeNode^.NodeType of
         jtUnknown:begin
-          lblType.Caption:= 'Type: Unknown';
-          lblCount.Caption:= 'N/A';
+          lblType.Caption:= Format(rsLabelType, [rsTypeUnknown]);
+          lblCount.Caption:= rsLabelCountNA;
         end;
         jtNumber:begin
-          lblType.Caption:= 'Type: Number';
-          lblCount.Caption:= 'N/A';
+          lblType.Caption:= Format(rsLabelType, [rsTypeNumber]);
+          lblCount.Caption:= rsLabelCountNA;
         end;
         jtString:begin
-          lblType.Caption:= 'Type: String';
-          lblCount.Caption:= 'N/A';
+          lblType.Caption:= Format(rsLabelType, [rsTypeString]);
+          lblCount.Caption:= rsLabelCountNA;
         end;
         jtBoolean:begin
-          lblType.Caption:= 'Type: Boolean';
-          lblCount.Caption:= 'N/A';
+          lblType.Caption:= Format(rsLabelType, [rsTypeBoolean]);
+          lblCount.Caption:= rsLabelCountNA;
         end;
         jtNull:begin
-          lblType.Caption:= 'Type: Null';
-          lblCount.Caption:= 'N/A';
+          lblType.Caption:= Format(rsLabelType, [rsTypeNull]);
+          lblCount.Caption:= rsLabelCountNA;
         end;
         jtArray:begin
-          lblType.Caption:= 'Type: Array';
+          lblType.Caption:= Format(rsLabelType, [rsTypeArray]);
           count:= TJSONArray(treeNode^.NodeData).Count;
-          lblCount.Caption:= Format('Items: %d', [count]);
+          lblCount.Caption:= Format(rsLabelCountArray, [count]);
         end;
         jtObject:begin
-          lblType.Caption:= 'Type: Object';
+          lblType.Caption:= Format(rsLabelType, [rsTypeObject]);
           count:= TJSONObject(treeNode^.NodeData).Count;
-          lblCount.Caption:= Format('Members: %d', [count]);
+          lblCount.Caption:= Format(rsLabelCountObject, [count]);
         end;
       end;
       ShowValue(treeNode^.NodeData);
@@ -352,6 +376,13 @@ begin
   psMain.Cursor:= crHSplit;
   pssTree.Cursor:= crDefault;
   pssNode.Cursor:= crDefault;
+end;
+
+procedure TfrmMain.ClearLabels;
+begin
+  lblName.Caption:= rsLabelNameEmpty;
+  lblType.Caption:= rsLabelTypeEmpty;
+  lblCount.Caption:= rsLabelCountEmpty;
 end;
 
 procedure TfrmMain.ProcessParams;

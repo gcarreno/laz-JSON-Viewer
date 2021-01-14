@@ -1,0 +1,104 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gustavo Carreno <guscarreno@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Language: pt\n"
+
+#: ljv.forms.main.rsformcaption
+msgid "JSON Viewer"
+msgstr "Visualizar JSON"
+
+#: ljv.forms.main.rslabelcountarray
+#, object-pascal-format
+msgid "Items: %d"
+msgstr "Items: %d"
+
+#: ljv.forms.main.rslabelcountempty
+msgctxt "ljv.forms.main.rslabelcountempty"
+msgid "Member Count"
+msgstr "Número de Membros"
+
+#: ljv.forms.main.rslabelcountna
+msgid "N/A"
+msgstr "N/A"
+
+#: ljv.forms.main.rslabelcountobject
+#, object-pascal-format
+msgid "Members: %d"
+msgstr "Membros: %d"
+
+#: ljv.forms.main.rslabelnamearrayitem
+#, object-pascal-format
+msgctxt "ljv.forms.main.rslabelnamearrayitem"
+msgid "Item: %d"
+msgstr "Item: %d"
+
+#: ljv.forms.main.rslabelnameempty
+msgctxt "ljv.forms.main.rslabelnameempty"
+msgid "Node Name/Index"
+msgstr "Nome/Índice"
+
+#: ljv.forms.main.rslabelnameindex
+#, object-pascal-format
+msgid "Index: %s"
+msgstr "Índice: %s"
+
+#: ljv.forms.main.rslabelnamename
+#, object-pascal-format
+msgid "Name: \"%s\""
+msgstr "Nome: %s"
+
+#: ljv.forms.main.rslabeltype
+#, object-pascal-format
+msgid "Type: %s"
+msgstr "Tipo: %s"
+
+#: ljv.forms.main.rslabeltypeempty
+msgctxt "ljv.forms.main.rslabeltypeempty"
+msgid "Node Type"
+msgstr "Tipo de Nó"
+
+#: ljv.forms.main.rstypearray
+msgid "Array"
+msgstr "Matriz"
+
+#: ljv.forms.main.rstypeboolean
+msgid "Boolean"
+msgstr "Boleano"
+
+#: ljv.forms.main.rstypenull
+msgid "Null"
+msgstr "Nulo"
+
+#: ljv.forms.main.rstypenumber
+msgid "Number"
+msgstr "Número"
+
+#: ljv.forms.main.rstypeobject
+msgid "Object"
+msgstr "Objeto"
+
+#: ljv.forms.main.rstypestring
+msgid "String"
+msgstr "Cadeia de caracteres"
+
+#: ljv.forms.main.rstypeunknown
+msgctxt "ljv.forms.main.rstypeunknown"
+msgid "Unknown"
+msgstr "Desconhecido"
+
+#: ljv.forms.main.rsvstnocolumns
+msgid "There are no Columns"
+msgstr "Não existem colunas"
+
+#: ljv.forms.main.rsvstunknown
+msgctxt "ljv.forms.main.rsvstunknown"
+msgid "Unknown"
+msgstr "Desconhecido"

@@ -39,7 +39,6 @@ uses
 
 begin
   RequireDerivedFormResource:=True;
-  Application.Title:='lazJSONViewer';
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
