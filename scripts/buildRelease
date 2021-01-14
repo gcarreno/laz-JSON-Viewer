@@ -123,7 +123,6 @@ begin
   end;
 end;
 
-{$IFNDEF ARM}
 procedure Linux64;
 begin
   WriteLN('Linux 64b');
@@ -155,7 +154,7 @@ begin
   CleanLangs('/i386/win32');
   Compile('i386', 'win32');
 end;
-{$ELSE}
+
 procedure Arm;
 begin
   WriteLN('Arm');
@@ -163,12 +162,11 @@ begin
   CleanLangs('/arm/linux');
   Compile('arm', 'linux');
 end;
-{$ENDIF}
 
 begin
   WriteLN(Format('Build Release v%s', [cVersion]));
   WriteLN;
-{$IFNDEF ARM}
+{$IFNDEF CPUARM}
   Linux64;
   Linux32;
   Windows64;
