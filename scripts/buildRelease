@@ -1,0 +1,179 @@
+#!/usr/bin/instantfpc
+uses
+  SysUtils
+, Process
+;
+
+const
+  cVersion = '0.1';
+  cLazBuild = '/home/gcarreno/FreePascal/lazarus/lazbuild';
+  cBuildMode = 'Release';
+  cBuildModeLin32 = '-linux-i386';
+  cBaseDir = '/home/gcarreno/Programming/laz-JSON-Viewer';
+  cSrcDir = '/src';
+  cBinDir = '/bin';
+  cDistDir = '/dist';
+  cLangsDir = '/i18n';
+  cLPIFile = 'lazJSONViewer.lpi';
+  cBinFile = 'lazJSONViewer';
+
+procedure CleanBinary(const ACPUOS: String);
+var
+  sBinary: String;
+  sDir: String;
+  sOutput: AnsiString;
+begin
+  WriteLN('  Cleaning binaries');
+  sDir:= Format('%s%s%s', [cBaseDir, cBinDir, ACPUOS]);
+  //WriteLN(sDir);
+  if not DirectoryExists(sDir) then
+  begin
+    RunCommand(
+      'mkdir',
+      [
+        '-p',
+        sDir
+      ],
+      sOutput);
+  end;
+  sBinary:= Format('%s%s%s/%s', [cBaseDir, cBinDir, ACPUOS, cBinFile]);
+  if FileExists(sBinary) then
+  begin
+    //WriteLN(sBinary);
+    DeleteFile(sBinary);
+  end;
+  if FileExists(sBinary+'.exe') then
+  begin
+    //WriteLN(sBinary+'.exe');
+    DeleteFile(sBinary+'.exe');
+  end;
+end;
+
+procedure CleanLangs(const ACPUOS: String);
+var
+  sLangsDir: String;
+  sOutput: AnsiString;
+  srInfo : TSearchRec;
+begin
+  WriteLN('  Cleaning language files');
+  sLangsDir:= Format('%s%s%s%s', [cBaseDir, cBinDir, ACPUOS, cLangsDir]);
+  //WriteLN(sLangsDir);
+  if not DirectoryExists(sLangsDir) then
+  begin
+    RunCommand(
+      'mkdir',
+      [
+        '-p',
+        sLangsDir
+      ],
+      sOutput);
+  end;
+  if DirectoryExists(sLangsDir) then
+  begin
+    if FindFirst(sLangsDir+'/*', faAnyFile, srInfo) = 0 then
+    begin
+      repeat
+        if (srInfo.Attr and faDirectory) = faDirectory then
+        begin
+          // Do nothing beacause its a folder
+        end
+        else
+        begin
+          //WriteLN(Format('%s/%s', [sLangsDir, srInfo.Name]));
+          DeleteFile(Format('%s/%s', [sLangsDir, srInfo.Name]));
+        end;
+      until FindNext(srInfo) <> 0;
+    end;
+  end;
+end;
+
+procedure Compile(const ACPU, AOS: String);
+var
+  sBuildMode: String;
+  sBuildFile: String;
+  sOutput: AnsiString;
+  bResult: Boolean;
+begin
+  WriteLN('  Building for CPU "', ACPU, '" OS "', AOS, '"');
+  sBuildMode:= 'Release';
+  if (ACPU = 'i386') and (AOS = 'linux') then
+  begin
+    sBuildMode:= Format('%s-%s-%s', [sBuildMode, AOS, ACPU]);
+  end;
+  sBuildFile:= Format('%s%s/%s', [cBaseDir, cSrcDir, cLPIFile]);
+  bResult:=
+    RunCommand(
+    cLazBuild,
+    [
+      '-B',
+      '--bm='+sBuildMode,
+      '--os='+AOS,
+      '--cpu='+ACPU,
+      sBuildFile
+    ],
+    sOutput
+  );
+  if bResult then
+  begin
+    WriteLN('    Success!');
+  end
+  else
+  begin
+    WriteLN(sOutput);
+  end;
+end;
+
+{$IFNDEF ARM}
+procedure Linux64;
+begin
+  WriteLN('Linux 64b');
+  CleanBinary('/x86_64/linux');
+  CleanLangs('/x86_64/linux');
+  Compile('x86_64', 'linux');
+end;
+
+procedure Linux32;
+begin
+  WriteLN('Linux 32b');
+  CleanBinary('/i386/linux');
+  CleanLangs('/i386/linux');
+  Compile('i386', 'linux');
+end;
+
+procedure Windows64;
+begin
+  WriteLN('Windows 64b');
+  CleanBinary('/x86_64/win64');
+  CleanLangs('/x86_64/win64');
+  Compile('x86_64', 'win64');
+end;
+
+procedure Windows32;
+begin
+  WriteLN('Windows 32b');
+  CleanBinary('/i386/win32');
+  CleanLangs('/i386/win32');
+  Compile('i386', 'win32');
+end;
+{$ELSE}
+procedure Arm;
+begin
+  WriteLN('Arm');
+  CleanBinary('/arm/linux');
+  CleanLangs('/arm/linux');
+  Compile('arm', 'linux');
+end;
+{$ENDIF}
+
+begin
+  WriteLN(Format('Build Release v%s', [cVersion]));
+  WriteLN;
+{$IFNDEF ARM}
+  Linux64;
+  Linux32;
+  Windows64;
+  Windows32;
+{$ELSE}
+  Arm;
+{$ENDIF}
+end.
