@@ -1,0 +1,32 @@
+name: build-test
+
+on:
+  pull_request:
+  push:
+    paths-ignore:
+    - "README.md"
+    branches:
+      - master
+      - releases/*
+
+jobs:
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest,windows-latest]
+        lazarus-versions: [stable, 2.0.8, 2.0.6]
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Install Lazarus
+      uses: gcarreno/setup-lazarus@v2.2.6
+      with:
+        lazarus-version: ${{ matrix.lazarus-versions }}
+        include-packages: "LCLExtensions, VirtualTreeView V5"
+    - name: Build the Main App
+      run: lazbuild --bm=Release "src/lazJSONViewer.lpi"
+#    - name: Build the Test App
+#      run: lazbuild --bm=Release "tests/testlazJSONViewer.lpi"
+#    - name: Run the Test App
+#      run: bin/testlazJSONViewer "--all" "--format=plain"
