@@ -11,7 +11,7 @@ Simple application to view a JSON file.
 
 The quick and dirty way I did it on my system was:
 
-1. Create a file under `$HOME/.local/share/applications` name `jsonviewer.desktop` with the appropriate contents pointing to where you have uncompressed your binary.
+1. Create a file under `$HOME/.local/share/applications` named `jsonviewer.desktop` with the appropriate contents pointing to where you have uncompressed your binary.
 2. Create and entry on `$HOME/.local/share/applications/defaults.list` that looks like:
 
 ```ini
