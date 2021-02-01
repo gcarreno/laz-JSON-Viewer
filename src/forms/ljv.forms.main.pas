@@ -173,6 +173,10 @@ procedure TfrmMain.lbFilesSelectionChange(Sender: TObject; User: boolean);
 var
   index: Integer;
 begin
+  if User then
+  begin
+    // Do nothing. Just to eliminate warning about variable User
+  end;
   if lbFiles.ItemIndex > -1 then
   begin
     Caption:= Format(rsFormCaptionFile, [FFileList[lbFiles.ItemIndex], cVersion]);
@@ -624,7 +628,7 @@ var
   posY: Integer;
   lbl, lblBin, lblHex, lblBytes, lblDateTime: TLabel;
   edt, edtBin, edtHex, edtBytes, edtDateTime, edtFloat: TEdit;
-  tmpInt64: Int64;
+  //tmpInt64: Int64;
   mem: TMemo;
 begin
   repeat
@@ -748,7 +752,7 @@ begin
           edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsInteger));
         end;
         ntInt64:begin
-          tmpInt64:= AJSONData.AsInt64;
+          //tmpInt64:= AJSONData.AsInt64;
           edt.Text:= Format('%d', [AJSONData.AsInt64]);
 
           { #todo -ogcarreno : Need to fix IntToBin only outputting 32 bits }
