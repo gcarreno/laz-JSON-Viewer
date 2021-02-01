@@ -16,8 +16,14 @@ msgid " B"
 msgstr " B"
 
 #: ljv.forms.main.rsformcaption
-msgid "JSON Viewer"
-msgstr "Visualizar JSON"
+#, object-pascal-format
+msgid "JSON Viewer v%s"
+msgstr "Visualizarador de JSON v%s"
+
+#: ljv.forms.main.rsformcaptionfile
+#, object-pascal-format
+msgid "JSON Viewer (%s) v%s"
+msgstr "Visualizarador de JSON (%s) v%s"
 
 #: ljv.forms.main.rsgigabytes
 msgid " GB"
@@ -154,4 +160,3 @@ msgstr "Não existem colunas"
 msgctxt "ljv.forms.main.rsvstunknown"
 msgid "Unknown"
 msgstr "Desconhecido"
-

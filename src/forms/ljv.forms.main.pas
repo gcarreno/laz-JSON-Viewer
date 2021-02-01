@@ -87,15 +87,19 @@ var
   frmMain: TfrmMain;
 
 const
+  cVersion = '0.1.3.24';
+  cVersionMajor = 0;
+  cVersionMinor = 1;
+  cVersionRevision = 3;
+  cVersionBuild = 24;
   cDateTimeFormat = 'yyyy/mm/dd hh:nn:ss';
 
 resourcestring
-  rsFormCaption = 'JSON Viewer';
+  rsFormCaption = 'JSON Viewer v%s';
+  rsFormCaptionFile = 'JSON Viewer (%s) v%s';
 
   rsVSTUnknown = 'Unknown';
   rsVSTNoColumns = 'There are no Columns';
-
-  //rsVSTName
 
   rsLabelTypeEmpty = 'Node Type';
   rsLabelType = 'Type: %s';
@@ -146,7 +150,7 @@ uses
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
-  Caption:= rsFormCaption;
+  Caption:= Format(rsFormCaption, [cVersion]);
   ClearLabels;
   CorrectPSCursor;
   ProcessParams;
@@ -171,7 +175,7 @@ var
 begin
   if lbFiles.ItemIndex > -1 then
   begin
-    Caption:= Format('%s (%s)', [rsFormCaption, FFileList[lbFiles.ItemIndex]]);
+    Caption:= Format(rsFormCaptionFile, [FFileList[lbFiles.ItemIndex], cVersion]);
     ClearLabels;
     for index:=0 to pred(panValue.ComponentCount) do
     begin

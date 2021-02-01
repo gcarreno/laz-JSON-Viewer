@@ -15,7 +15,13 @@ msgid " B"
 msgstr ""
 
 #: ljv.forms.main.rsformcaption
-msgid "JSON Viewer"
+#, object-pascal-format
+msgid "JSON Viewer v%s"
+msgstr ""
+
+#: ljv.forms.main.rsformcaptionfile
+#, object-pascal-format
+msgid "JSON Viewer (%s) v%s"
 msgstr ""
 
 #: ljv.forms.main.rsgigabytes
