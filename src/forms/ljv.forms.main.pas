@@ -620,6 +620,7 @@ var
   posY: Integer;
   lbl, lblBin, lblHex, lblBytes, lblDateTime: TLabel;
   edt, edtBin, edtHex, edtBytes, edtDateTime, edtFloat: TEdit;
+  tmpInt64: Int64;
   mem: TMemo;
 begin
   repeat
@@ -737,14 +738,19 @@ begin
       case TJSONNumber(AJSONData).NumberType of
         ntInteger:begin
           edt.Text:= Format('%d', [AJSONData.AsInteger]);
-          edtBin.Text:= IntToBin(AJSONData.AsInteger, 100, 8);
-          edtHex.Text:= IntToHex(AJSONData.AsInteger);
+          edtBin.Text:= IntToBin(AJSONData.AsInteger, 32, 8);
+          edtHex.Text:= IntToHex(AJSONData.AsInteger, 16);
           edtBytes.Text:= FormatBytes(AJSONData.AsInteger);
           edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsInteger));
         end;
         ntInt64:begin
+          tmpInt64:= AJSONData.AsInt64;
           edt.Text:= Format('%d', [AJSONData.AsInt64]);
-          edtHex.Text:= IntToHex(AJSONData.AsInt64);
+
+          { #todo -ogcarreno : Need to fix IntToBin only outputting 32 bits }
+          //edtBin.Text:= IntToBin(AJSONData.AsInteger, 32, 8);
+
+          edtHex.Text:= IntToHex(AJSONData.AsInt64, 16);
           edtBytes.Text:= FormatBytes(AJSONData.AsInt64);
           edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsInt64));
         end;
@@ -754,8 +760,8 @@ begin
         end;
         ntQWord:begin
           edt.Text:= Format('%d', [AJSONData.AsQWord]);
-          edtBin.Text:= IntToBin(AJSONData.AsQWord, 100, 8);
-          edtHex.Text:= IntToHex(AJSONData.AsQWord);
+          edtBin.Text:= IntToBin(AJSONData.AsQWord, 32, 8);
+          edtHex.Text:= IntToHex(AJSONData.AsQWord, 16);
           edtBytes.Text:= FormatBytes(AJSONData.AsQWord);
           edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsQWord));
         end;

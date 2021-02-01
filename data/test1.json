@@ -1,7 +1,7 @@
 {
 	"TestNull" : null,
-	"TestInteger" : 120,
-	"TestInt64" : 120120120120,
+	"TestInteger" : 255,
+	"TestInt64" : 123124125126,
 	"TestFloat" : 120.3,
 	"TestString" : "String Value",
 	"TestBoolean" : false,

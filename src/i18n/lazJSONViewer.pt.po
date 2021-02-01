@@ -154,3 +154,4 @@ msgstr "Não existem colunas"
 msgctxt "ljv.forms.main.rsvstunknown"
 msgid "Unknown"
 msgstr "Desconhecido"
+
