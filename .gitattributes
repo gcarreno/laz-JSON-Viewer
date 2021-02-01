@@ -37,3 +37,4 @@
 .gitattributes  export-ignore
 /tests          export-ignore
 /builds         export-ignore
+/images         export-ignore

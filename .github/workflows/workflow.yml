@@ -5,6 +5,7 @@ on:
   push:
     paths-ignore:
     - "README.md"
+    - "images/*"
     branches:
       - master
       - releases/*
