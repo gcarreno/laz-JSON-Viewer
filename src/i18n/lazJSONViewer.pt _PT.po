@@ -9,7 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.1\n"
 "Last-Translator: Gustavo Carreno <guscarreno@gmail.com>\n"
-"Language: pt\n"
+"Language: pt_PT\n"
 
 #: ljv.forms.main.rsbytes
 msgid " B"

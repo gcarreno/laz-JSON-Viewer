@@ -46,7 +46,6 @@ msgid "Items: %d"
 msgstr ""
 
 #: ljv.forms.main.rslabelcountempty
-msgctxt "ljv.forms.main.rslabelcountempty"
 msgid "Member Count"
 msgstr ""
 
@@ -69,18 +68,11 @@ msgstr ""
 
 #: ljv.forms.main.rslabelnamearrayitem
 #, object-pascal-format
-msgctxt "ljv.forms.main.rslabelnamearrayitem"
 msgid "Item: %d"
 msgstr ""
 
 #: ljv.forms.main.rslabelnameempty
-msgctxt "ljv.forms.main.rslabelnameempty"
 msgid "Node Name/Index"
-msgstr ""
-
-#: ljv.forms.main.rslabelnameindex
-#, object-pascal-format
-msgid "Index: %s"
 msgstr ""
 
 #: ljv.forms.main.rslabelnamename
@@ -94,12 +86,7 @@ msgid "Type: %s"
 msgstr ""
 
 #: ljv.forms.main.rslabeltypeempty
-msgctxt "ljv.forms.main.rslabeltypeempty"
 msgid "Node Type"
-msgstr ""
-
-#: ljv.forms.main.rslabelvalue
-msgid "Value"
 msgstr ""
 
 #: ljv.forms.main.rsmegabytes
@@ -158,5 +145,21 @@ msgstr ""
 #: ljv.forms.main.rsvstunknown
 msgctxt "ljv.forms.main.rsvstunknown"
 msgid "Unknown"
+msgstr ""
+
+#: tfrmmain.caption
+msgid "frmMain"
+msgstr ""
+
+#: tfrmmain.lblcount.caption
+msgid "lblCount"
+msgstr ""
+
+#: tfrmmain.lblname.caption
+msgid "lblName"
+msgstr ""
+
+#: tfrmmain.lbltype.caption
+msgid "lblType"
 msgstr ""
 

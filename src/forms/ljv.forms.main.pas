@@ -86,13 +86,17 @@ type
 var
   frmMain: TfrmMain;
 
-const
-  cVersion = '0.1.3.24';
-  cVersionMajor = 0;
-  cVersionMinor = 1;
-  cVersionRevision = 3;
-  cVersionBuild = 24;
-  cDateTimeFormat = 'yyyy/mm/dd hh:nn:ss';
+implementation
+
+{$R *.lfm}
+
+uses
+  StrUtils
+, DateUtils
+, LJV.Application.Version
+, LJV.JSON.Utils
+, LJV.Tree.Nodes
+;
 
 resourcestring
   rsFormCaption = 'JSON Viewer v%s';
@@ -105,14 +109,12 @@ resourcestring
   rsLabelType = 'Type: %s';
   rsLabelNameEmpty = 'Node Name/Index';
   rsLabelNameName = 'Name: "%s"';
-  rsLabelNameIndex = 'Index: %s';
   rsLabelNameArrayItem = 'Item: %d';
   rsLabelCountEmpty = 'Member Count';
   rsLabelCountArray = 'Items: %d';
   rsLabelCountObject = 'Members: %d';
   rsLabelCountNA = 'N/A';
 
-  rsLabelValue = 'Value';
   rsLabelBinary = 'Binary';
   rsLabelHexadecimal = 'Hexadecimal';
   rsLabelDateTime = 'Date';
@@ -135,16 +137,8 @@ resourcestring
   rsTypeArray = 'Array';
   rsTypeObject = 'Object';
 
-implementation
-
-{$R *.lfm}
-
-uses
-  StrUtils
-, DateUtils
-, LJV.JSON.Utils
-, LJV.Tree.Nodes
-;
+const
+  cDateTimeFormat = 'yyyy/mm/dd hh:nn:ss';
 
 { TfrmMain }
 
@@ -155,6 +149,10 @@ begin
   CorrectPSCursor;
   ProcessParams;
   UpdateFileList;
+  {
+    If anyone wants to select the first file upon launch
+    un-comment the following lines
+  }
   //if lbFiles.Items.Count > 0 then
   //begin
   //  lbFiles.ItemIndex:= 0;

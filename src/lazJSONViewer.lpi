@@ -19,18 +19,12 @@
     <i18n>
       <EnableI18N Value="True"/>
       <OutDir Value="i18n"/>
-      <ExcludedIdentifiers Count="4">
-        <Item1 Value="tfrmmain.caption"/>
-        <Item2 Value="tfrmmain.lblname.caption"/>
-        <Item3 Value="tfrmmain.lbltype.caption"/>
-        <Item4 Value="tfrmmain.lblcount.caption"/>
-      </ExcludedIdentifiers>
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="3"/>
-      <BuildNr Value="24"/>
+      <BuildNr Value="25"/>
       <Language Value="0809"/>
     </VersionInfo>
     <BuildModes Count="4">
@@ -42,7 +36,7 @@
             <Filename Value="../bin/lazJSONViewer"/>
           </Target>
           <SearchPaths>
-            <OtherUnitFiles Value="forms;tree;json"/>
+            <OtherUnitFiles Value="forms;tree;json;application"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -82,7 +76,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="forms;tree;json"/>
+            <OtherUnitFiles Value="forms;tree;json;application"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -112,7 +106,7 @@
           </Target>
           <SearchPaths>
             <Libraries Value="/usr/lib/gcc/i686-linux-gnu/9/"/>
-            <OtherUnitFiles Value="forms;tree;json"/>
+            <OtherUnitFiles Value="forms;tree;json;application"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -160,7 +154,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="lazJSONViewer.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -181,6 +175,11 @@
         <Filename Value="json/ljv.json.utils.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="application/ljv.application.version.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="LJV.Application.Version"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -190,7 +189,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="forms;tree;json"/>
+      <OtherUnitFiles Value="forms;tree;json;application"/>
       <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
