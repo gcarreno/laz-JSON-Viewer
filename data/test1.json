@@ -1,12 +1,22 @@
 {
-	"TestNull" : null,
-	"TestInteger" : 255,
-	"TestInt64" : 123124125126,
-	"TestFloat" : 120.3,
-	"TestString" : "String Value",
-	"TestBoolean" : false,
-	"TestArray" : [ null, 1, 2.2, "String Value", true ],
-	"TestObject" : {
-		"TestObjectString" : "String Value"
-	}
+    "TestNull" : null,
+    "TestInteger" : 255,
+    "TestInt64" : 123124125126,
+    "TestFloat" : 120.3,
+    "TestString" : "String Value",
+    "TestBoolean" : false,
+    "TestArray" : [
+        null,
+        0,
+        -1,
+        -1024,
+        2.2,
+        1024.03,
+        -0.425,
+        "String Value",
+        true
+    ],
+    "TestObject" : {
+        "TestObjectString" : "String Value"
+    }
 }

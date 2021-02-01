@@ -62,6 +62,10 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
+#: ljv.forms.main.rslabelformated
+msgid "Formated"
+msgstr ""
+
 #: ljv.forms.main.rslabelhexadecimal
 msgid "Hexadecimal"
 msgstr ""
@@ -78,6 +82,10 @@ msgstr ""
 #: ljv.forms.main.rslabelnamename
 #, object-pascal-format
 msgid "Name: \"%s\""
+msgstr ""
+
+#: ljv.forms.main.rslabelscientific
+msgid "Scientific"
 msgstr ""
 
 #: ljv.forms.main.rslabeltype

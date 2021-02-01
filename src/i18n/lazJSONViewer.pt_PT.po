@@ -63,6 +63,10 @@ msgstr "Membros: %d"
 msgid "Date"
 msgstr "Data"
 
+#: ljv.forms.main.rslabelformated
+msgid "Formated"
+msgstr "Formatado"
+
 #: ljv.forms.main.rslabelhexadecimal
 msgid "Hexadecimal"
 msgstr "Hexadecimal"
@@ -80,6 +84,10 @@ msgstr "Nome/Índice do Nó"
 #, object-pascal-format
 msgid "Name: \"%s\""
 msgstr "Nome: \"%s\""
+
+#: ljv.forms.main.rslabelscientific
+msgid "Scientific"
+msgstr "Cientifico"
 
 #: ljv.forms.main.rslabeltype
 #, object-pascal-format
