@@ -68,6 +68,8 @@ type
     FJSON: TJSONData;
     FFileList: Array of String;
 
+    function FormatBytes(ABytes: Int64): String;
+
     procedure ClearLabels;
     procedure CorrectPSCursor;
     procedure ProcessParams;
@@ -83,6 +85,9 @@ type
 
 var
   frmMain: TfrmMain;
+
+const
+  cDateTimeFormat = 'yyyy/mm/dd hh:nn:ss';
 
 resourcestring
   rsFormCaption = 'JSON Viewer';
@@ -103,8 +108,23 @@ resourcestring
   rsLabelCountObject = 'Members: %d';
   rsLabelCountNA = 'N/A';
 
+  rsLabelValue = 'Value';
+  rsLabelBinary = 'Binary';
+  rsLabelHexadecimal = 'Hexadecimal';
+  rsLabelDateTime = 'Date';
+  rsLabelBytes = 'Bytes';
+
+  rsBytes = ' B';
+  rsKiloBytes = ' KB';
+  rsMegaBytes = ' MB';
+  rsGigaBytes = ' GB';
+  rsTeraBytes = ' TB';
+
   rsTypeUnknown = 'Unknown';
-  rsTypeNumber = 'Number';
+  rsTypeNumberInteger = 'Number (Integer)';
+  rsTypeNumberInt64 = 'Number (Int64)';
+  rsTypeNumberFloat = 'Number (Float)';
+  rsTypeNumberQWord = 'Number (QWord)';
   rsTypeString = 'String';
   rsTypeBoolean = 'Boolean';
   rsTypeNull = 'Null';
@@ -116,7 +136,9 @@ implementation
 {$R *.lfm}
 
 uses
-  LJV.JSON.Utils
+  StrUtils
+, DateUtils
+, LJV.JSON.Utils
 , LJV.Tree.Nodes
 ;
 
@@ -188,7 +210,20 @@ begin
           lblCount.Caption:= rsLabelCountNA;
         end;
         jtNumber:begin
-          lblType.Caption:= Format(rsLabelType, [rsTypeNumber]);
+          case TJSONNumber(treeNode^.NodeData).NumberType of
+            ntInteger:begin
+              lblType.Caption:= Format(rsLabelType, [rsTypeNumberInteger]);
+            end;
+            ntInt64:begin
+              lblType.Caption:= Format(rsLabelType, [rsTypeNumberInt64]);
+            end;
+            ntFloat:begin
+              lblType.Caption:= Format(rsLabelType, [rsTypeNumberFloat]);
+            end;
+            ntQWord:begin
+              lblType.Caption:= Format(rsLabelType, [rsTypeNumberQWord]);
+            end;
+          end;
           lblCount.Caption:= rsLabelCountNA;
         end;
         jtString:begin
@@ -258,17 +293,56 @@ begin
                   jNumber:= treeNode^.NodeData as TJSONNumber;
                   if Length(treeNode^.NodeName) > 0 then
                   begin
-                    CellText:= Format('%s: %d', [treeNode^.NodeName, jNumber.AsInt64]);
+                    case jNumber.NumberType of
+                      ntInteger:begin
+                        CellText:= Format('%s: %d', [treeNode^.NodeName, jNumber.AsInteger]);
+                      end;
+                      ntInt64:begin
+                        CellText:= Format('%s: %d', [treeNode^.NodeName, jNumber.AsInt64]);
+                      end;
+                      ntFloat:begin
+                        CellText:= Format('%s: %n', [treeNode^.NodeName, jNumber.AsFloat]);
+                      end;
+                      ntQWord:begin
+                        CellText:= Format('%s: %d', [treeNode^.NodeName, jNumber.AsQWord]);
+                      end;
+                    end;
                   end
                   else
                   begin
                     if treeNode^.NodeIndex > -1 then
                     begin
-                      CellText:= Format('%d: %d', [treeNode^.NodeIndex, jNumber.AsInt64]);
+                      case jNumber.NumberType of
+                        ntInteger:begin
+                          CellText:= Format('%d: %d', [treeNode^.NodeIndex, jNumber.AsInteger]);
+                        end;
+                        ntInt64:begin
+                          CellText:= Format('%d: %d', [treeNode^.NodeIndex, jNumber.AsInt64]);
+                        end;
+                        ntFloat:begin
+                          CellText:= Format('%d: %n', [treeNode^.NodeIndex, jNumber.AsFloat]);
+                        end;
+                        ntQWord:begin
+                          CellText:= Format('%d: %d', [treeNode^.NodeIndex, jNumber.AsQWord]);
+                        end;
+                      end;
                     end
                     else
                     begin
-                      CellText:= Format('%d', [jNumber.AsInt64]);
+                      case jNumber.NumberType of
+                        ntInteger:begin
+                          CellText:= Format('%d', [jNumber.AsInteger]);
+                        end;
+                        ntInt64:begin
+                          CellText:= Format('%d', [jNumber.AsInt64]);
+                        end;
+                        ntFloat:begin
+                          CellText:= Format('%n', [jNumber.AsFloat]);
+                        end;
+                        ntQWord:begin
+                          CellText:= Format('%d', [jNumber.AsQWord]);
+                        end;
+                      end;
                     end;
                   end;
                 end;
@@ -368,6 +442,42 @@ begin
         end;
       end;
     end;
+  end;
+end;
+
+function TfrmMain.FormatBytes(ABytes: Int64): String;
+var
+  dSize: Double;
+begin
+  Result := '';
+  dSize := 0.0;
+  if ABytes < 1024 then
+  begin
+    Result := IntToStr(ABytes) + rsBytes;
+    exit;
+  end;
+  if ABytes < (1024*1024) then
+  begin
+    dSize := ABytes / 1024;
+    Result := FormatFloat('0.##', dSize) + rsKiloBytes;
+    exit;
+  end;
+  if ABytes < (1024*1024*1024) then
+  begin
+    dSize := ABytes / 1024 / 1024;
+    Result := FormatFloat('0.##', dSize) + rsMegaBytes;
+    exit;
+  end;
+  if ABytes < (1024*1024*1024*1024) then
+  begin
+    dSize := ABytes / 1024 / 1024 / 1024;
+    Result := FormatFloat('0.##', dSize) + rsGigaBytes;
+    exit;
+  end;
+  if ABytes < (1024*1024*1024*1024*1024) then
+  begin
+    dSize := ABytes / 1024 / 1024 / 1024 / 1024;
+    Result := FormatFloat('0.##', dSize) + rsTeraBytes;
   end;
 end;
 
@@ -507,15 +617,14 @@ end;
 
 procedure TfrmMain.ShowValue(const AJSONData: TJSONData);
 var
-  index: Integer;
-  lbl: TLabel;
-  edt: TEdit;
+  posY: Integer;
+  lbl, lblBin, lblHex, lblBytes, lblDateTime: TLabel;
+  edt, edtBin, edtHex, edtBytes, edtDateTime, edtFloat: TEdit;
   mem: TMemo;
 begin
-  for index:= 0 to pred(panValue.ComponentCount) do
-  begin
-    panValue.Components[index].Free;
-  end;
+  repeat
+    panValue.Components[0].Free;
+  until panValue.ComponentCount = 0;
   case AJSONData.JSONType of
     jtUnknown:begin
       lbl:= TLabel.Create(panValue);
@@ -525,13 +634,132 @@ begin
       lbl.Caption:= 'Unknown';
     end;
     jtNumber:begin
+      posY:= 8;
+
+      //lbl:= TLabel.Create(panValue);
+      //lbl.Parent:= panValue;
+      //lbl.Top:= posY;
+      //lbl.Left:=8;
+      //lbl.Caption:= rsLabelValue;
+      //Inc(posY, 17);
+
       edt:= TEdit.Create(panValue);
       edt.Parent:= panValue;
-      edt.Top:= 8;
+      edt.Top:= posY;
       edt.Left:= 8;
       edt.Width:= panValue.ClientWidth - 16;
+      edt.Anchors:= [akTop, akLeft, akRight];
       edt.ReadOnly:= True;
-      edt.Text:= Format('%d', [AJSONData.AsInt64]);
+      Inc(posY, 50);
+
+      if TJSONNumber(AJSONData).NumberType in [ntInteger, ntQWord] then
+      begin
+        lblBin:= TLabel.Create(panValue);
+        lblBin.Parent:= panValue;
+        lblBin.Top:= posY;
+        lblBin.Left:=8;
+        lblBin.Caption:= rsLabelBinary;
+        Inc(posY, 17);
+
+        edtBin:= TEdit.Create(panValue);
+        edtBin.Parent:= panValue;
+        edtBin.Top:= posY;
+        edtBin.Left:= 8;
+        edtBin.Width:= panValue.ClientWidth - 16;
+        edtBin.Anchors:= [akTop, akLeft, akRight];
+        edtBin.ReadOnly:= True;
+        Inc(posY, 34);
+      end;
+
+      if TJSONNumber(AJSONData).NumberType in [ntInteger, ntInt64, ntQWord] then
+      begin
+        lblHex:= TLabel.Create(panValue);
+        lblHex.Parent:= panValue;
+        lblHex.Top:= posY;
+        lblHex.Left:=8;
+        lblHex.Caption:= rsLabelHexadecimal;
+        Inc(posY, 17);
+
+        edtHex:= TEdit.Create(panValue);
+        edtHex.Parent:= panValue;
+        edtHex.Top:= posY;
+        edtHex.Left:= 8;
+        edtHex.Width:= panValue.ClientWidth - 16;
+        edtHex.Anchors:= [akTop, akLeft, akRight];
+        edtHex.ReadOnly:= True;
+        Inc(posY, 34);
+
+        lblBytes:= TLabel.Create(panValue);
+        lblBytes.Parent:= panValue;
+        lblBytes.Top:= posY;
+        lblBytes.Left:=8;
+        lblBytes.Caption:= rsLabelBytes;
+        Inc(posY, 17);
+
+        edtBytes:= TEdit.Create(panValue);
+        edtBytes.Parent:= panValue;
+        edtBytes.Top:= posY;
+        edtBytes.Left:= 8;
+        edtBytes.Width:= panValue.ClientWidth - 16;
+        edtBytes.Anchors:= [akTop, akLeft, akRight];
+        edtBytes.ReadOnly:= True;
+        Inc(posY, 34);
+
+        lblDateTime:= TLabel.Create(panValue);
+        lblDateTime.Parent:= panValue;
+        lblDateTime.Top:= posY;
+        lblDateTime.Left:=8;
+        lblDateTime.Caption:= rsLabelDateTime;
+        Inc(posY, 17);
+
+        edtDateTime:= TEdit.Create(panValue);
+        edtDateTime.Parent:= panValue;
+        edtDateTime.Top:= posY;
+        edtDateTime.Left:= 8;
+        edtDateTime.Width:= panValue.ClientWidth - 16;
+        edtDateTime.Anchors:= [akTop, akLeft, akRight];
+        edtDateTime.ReadOnly:= True;
+        Inc(posY, 34);
+      end;
+
+      if TJSONNumber(AJSONData).NumberType = ntFloat then
+      begin
+        edtFloat:= TEdit.Create(panValue);
+        edtFloat.Parent:= panValue;
+        edtFloat.Top:= posY;
+        edtFloat.Left:= 8;
+        edtFloat.Width:= panValue.ClientWidth - 16;
+        edtFloat.Anchors:= [akTop, akLeft, akRight];
+        edtFloat.ReadOnly:= True;
+        Inc(posY, 34);
+      end;
+
+      case TJSONNumber(AJSONData).NumberType of
+        ntInteger:begin
+          edt.Text:= Format('%d', [AJSONData.AsInteger]);
+          edtBin.Text:= IntToBin(AJSONData.AsInteger, 100, 8);
+          edtHex.Text:= IntToHex(AJSONData.AsInteger);
+          edtBytes.Text:= FormatBytes(AJSONData.AsInteger);
+          edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsInteger));
+        end;
+        ntInt64:begin
+          edt.Text:= Format('%d', [AJSONData.AsInt64]);
+          edtHex.Text:= IntToHex(AJSONData.AsInt64);
+          edtBytes.Text:= FormatBytes(AJSONData.AsInt64);
+          edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsInt64));
+        end;
+        ntFloat:begin
+          edt.Text:= Format('%n', [AJSONData.AsFloat]);
+          edtFloat.Text:= AJSONData.AsString;
+        end;
+        ntQWord:begin
+          edt.Text:= Format('%d', [AJSONData.AsQWord]);
+          edtBin.Text:= IntToBin(AJSONData.AsQWord, 100, 8);
+          edtHex.Text:= IntToHex(AJSONData.AsQWord);
+          edtBytes.Text:= FormatBytes(AJSONData.AsQWord);
+          edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsQWord));
+        end;
+      end;
     end;
     jtString:begin
       mem:= TMemo.Create(panValue);

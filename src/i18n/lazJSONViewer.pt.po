@@ -11,9 +11,29 @@ msgstr ""
 "X-Generator: Poedit 2.4.1\n"
 "Language: pt\n"
 
+#: ljv.forms.main.rsbytes
+msgid " B"
+msgstr " B"
+
 #: ljv.forms.main.rsformcaption
 msgid "JSON Viewer"
 msgstr "Visualizar JSON"
+
+#: ljv.forms.main.rsgigabytes
+msgid " GB"
+msgstr " GB"
+
+#: ljv.forms.main.rskilobytes
+msgid " KB"
+msgstr " KB"
+
+#: ljv.forms.main.rslabelbinary
+msgid "Binary"
+msgstr "Binário"
+
+#: ljv.forms.main.rslabelbytes
+msgid "Bytes"
+msgstr "Bytes"
 
 #: ljv.forms.main.rslabelcountarray
 #, object-pascal-format
@@ -33,6 +53,14 @@ msgstr "N/A"
 #, object-pascal-format
 msgid "Members: %d"
 msgstr "Membros: %d"
+
+#: ljv.forms.main.rslabeldatetime
+msgid "Date"
+msgstr "Data"
+
+#: ljv.forms.main.rslabelhexadecimal
+msgid "Hexadecimal"
+msgstr "Hexadecimal"
 
 #: ljv.forms.main.rslabelnamearrayitem
 #, object-pascal-format
@@ -65,6 +93,18 @@ msgctxt "ljv.forms.main.rslabeltypeempty"
 msgid "Node Type"
 msgstr "Tipo de Nó"
 
+#: ljv.forms.main.rslabelvalue
+msgid "Value"
+msgstr "Valor"
+
+#: ljv.forms.main.rsmegabytes
+msgid " MB"
+msgstr " MB"
+
+#: ljv.forms.main.rsterabytes
+msgid " TB"
+msgstr " TB"
+
 #: ljv.forms.main.rstypearray
 msgid "Array"
 msgstr "Matriz"
@@ -77,9 +117,21 @@ msgstr "Boleano"
 msgid "Null"
 msgstr "Nulo"
 
-#: ljv.forms.main.rstypenumber
-msgid "Number"
-msgstr "Número"
+#: ljv.forms.main.rstypenumberfloat
+msgid "Number (Float)"
+msgstr "Número (Real)"
+
+#: ljv.forms.main.rstypenumberint64
+msgid "Number (Int64)"
+msgstr "Número (Int64)"
+
+#: ljv.forms.main.rstypenumberinteger
+msgid "Number (Integer)"
+msgstr "Número (Inteiro)"
+
+#: ljv.forms.main.rstypenumberqword
+msgid "Number (QWord)"
+msgstr "Número (QWord)"
 
 #: ljv.forms.main.rstypeobject
 msgid "Object"
