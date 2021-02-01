@@ -643,13 +643,6 @@ begin
     jtNumber:begin
       posY:= 8;
 
-      //lbl:= TLabel.Create(panValue);
-      //lbl.Parent:= panValue;
-      //lbl.Top:= posY;
-      //lbl.Left:=8;
-      //lbl.Caption:= rsLabelValue;
-      //Inc(posY, 17);
-
       edt:= TEdit.Create(panValue);
       edt.Parent:= panValue;
       edt.Top:= posY;
@@ -659,7 +652,7 @@ begin
       edt.ReadOnly:= True;
       Inc(posY, 50);
 
-      if TJSONNumber(AJSONData).NumberType in [ntInteger, ntQWord] then
+      if TJSONNumber(AJSONData).NumberType in [ntInteger, ntInt64, ntQWord] then
       begin
         lblBin:= TLabel.Create(panValue);
         lblBin.Parent:= panValue;
@@ -676,10 +669,7 @@ begin
         edtBin.Anchors:= [akTop, akLeft, akRight];
         edtBin.ReadOnly:= True;
         Inc(posY, 34);
-      end;
 
-      if TJSONNumber(AJSONData).NumberType in [ntInteger, ntInt64, ntQWord] then
-      begin
         lblHex:= TLabel.Create(panValue);
         lblHex.Parent:= panValue;
         lblHex.Top:= posY;
@@ -744,7 +734,7 @@ begin
       case TJSONNumber(AJSONData).NumberType of
         ntInteger:begin
           edt.Text:= Format('%d', [AJSONData.AsInteger]);
-          edtBin.Text:= IntToBin(AJSONData.AsInteger, 32, 8);
+          edtBin.Text:= IntToBin(AJSONData.AsInt64, 32);
           edtHex.Text:= IntToHex(AJSONData.AsInteger, 16);
           edtBytes.Text:= FormatBytes(AJSONData.AsInteger);
           edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsInteger));
@@ -754,7 +744,7 @@ begin
           edt.Text:= Format('%d', [AJSONData.AsInt64]);
 
           { #todo -ogcarreno : Need to fix IntToBin only outputting 32 bits }
-          //edtBin.Text:= IntToBin(AJSONData.AsInteger, 32, 8);
+          edtBin.Text:= IntToBin(AJSONData.AsInt64, 64);
 
           edtHex.Text:= IntToHex(AJSONData.AsInt64, 16);
           edtBytes.Text:= FormatBytes(AJSONData.AsInt64);
@@ -766,7 +756,7 @@ begin
         end;
         ntQWord:begin
           edt.Text:= Format('%d', [AJSONData.AsQWord]);
-          edtBin.Text:= IntToBin(AJSONData.AsQWord, 32, 8);
+          edtBin.Text:= IntToBin(AJSONData.AsInt64, 64);
           edtHex.Text:= IntToHex(AJSONData.AsQWord, 16);
           edtBytes.Text:= FormatBytes(AJSONData.AsQWord);
           edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsQWord));
