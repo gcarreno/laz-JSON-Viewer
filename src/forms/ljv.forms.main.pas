@@ -35,7 +35,7 @@ uses
 , Dialogs
 , ExtCtrls
 , StdCtrls
-, PairSplitter
+, PairSplitter, JSONPropStorage
 , fpjson
 , VirtualTrees
 ;
@@ -45,6 +45,7 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    JSONPropStorage: TJSONPropStorage;
     lblCount: TLabel;
     lblName: TLabel;
     lblType: TLabel;
@@ -69,6 +70,9 @@ type
     FFileList: Array of String;
 
     function FormatBytes(ABytes: Int64): String;
+
+    procedure SetupPropStorage;
+    procedure ShutdownPropStorage;
 
     procedure ClearLabels;
     procedure CorrectPSCursor;
@@ -150,6 +154,7 @@ const
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  SetupPropStorage;
   Caption:= Format(rsFormCaption, [cVersion]);
   ClearLabels;
   CorrectPSCursor;
@@ -171,6 +176,7 @@ begin
   begin
     FJSON.Free;
   end;
+  ShutdownPropStorage;
 end;
 
 procedure TfrmMain.lbFilesSelectionChange(Sender: TObject; User: boolean);
@@ -491,6 +497,18 @@ begin
     dSize := ABytes / 1024 / 1024 / 1024 / 1024;
     Result := FormatFloat('0.##', dSize) + rsTeraBytes;
   end;
+end;
+
+procedure TfrmMain.SetupPropStorage;
+begin
+  JSONPropStorage.JSONFileName:= GetAppConfigFile(False);
+  JSONPropStorage.RootObjectPath:= 'Application';
+  JSONPropStorage.Active:= True;
+end;
+
+procedure TfrmMain.ShutdownPropStorage;
+begin
+  JSONPropStorage.Active:= False;
 end;
 
 procedure TfrmMain.CorrectPSCursor;

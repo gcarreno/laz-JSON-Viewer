@@ -8,6 +8,7 @@ object frmMain: TfrmMain
   ClientWidth = 1017
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  SessionProperties = 'Top;Left;Height;Width;WindowState'
   object psMain: TPairSplitter
     Cursor = crDefault
     Left = 224
@@ -117,5 +118,12 @@ object frmMain: TfrmMain
     Height = 563
     Top = 0
     Width = 5
+  end
+  object JSONPropStorage: TJSONPropStorage
+    StoredValues = <>
+    Formatted = False
+    Active = False
+    Left = 768
+    Top = 400
   end
 end

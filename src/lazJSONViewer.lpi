@@ -23,8 +23,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="1"/>
-      <RevisionNr Value="4"/>
-      <BuildNr Value="26"/>
+      <RevisionNr Value="5"/>
+      <BuildNr Value="27"/>
       <Language Value="0809"/>
     </VersionInfo>
     <BuildModes Count="4">
