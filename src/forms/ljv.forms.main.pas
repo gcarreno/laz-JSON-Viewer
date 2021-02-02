@@ -45,6 +45,8 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    lblValue: TLabel;
+    panValue: TPanel;
     JSONPropStorage: TJSONPropStorage;
     lblCount: TLabel;
     lblName: TLabel;
@@ -55,10 +57,10 @@ type
     pssNode: TPairSplitterSide;
     Splitter1: TSplitter;
     vstJSON: TVirtualStringTree;
-    panValue: TPanel;
     panItem: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
     procedure lbFilesSelectionChange(Sender: TObject; User: boolean);
     procedure vstJSONChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure vstJSONGetNodeDataSize(Sender: TBaseVirtualTree;
@@ -69,6 +71,8 @@ type
     FJSON: TJSONData;
     FFileList: Array of String;
 
+    procedure AddFile(const AFilename: String);
+    procedure ClearTree;
     function FormatBytes(ABytes: Int64): String;
 
     procedure SetupPropStorage;
@@ -119,6 +123,7 @@ resourcestring
   rsLabelCountObject = 'Members: %d';
   rsLabelCountNA = 'N/A';
 
+  rsCaptionValue = 'Value';
   rsLabelFormated = 'Formated';
   rsLabelBinary = 'Binary';
   rsLabelHexadecimal = 'Hexadecimal';
@@ -156,6 +161,7 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   SetupPropStorage;
   Caption:= Format(rsFormCaption, [cVersion]);
+  lblValue.Caption:= rsCaptionValue;
   ClearLabels;
   CorrectPSCursor;
   ProcessParams;
@@ -177,6 +183,20 @@ begin
     FJSON.Free;
   end;
   ShutdownPropStorage;
+end;
+
+procedure TfrmMain.FormDropFiles(Sender: TObject;
+  const FileNames: array of string);
+var
+  filename: String;
+begin
+  for filename in FileNames do
+  begin
+    AddFile(filename);
+  end;
+  UpdateFileList;
+  ClearTree;
+  ClearLabels;
 end;
 
 procedure TfrmMain.lbFilesSelectionChange(Sender: TObject; User: boolean);
@@ -499,8 +519,41 @@ begin
   end;
 end;
 
+procedure TfrmMain.AddFile(const AFilename: String);
+var
+  len: Integer;
+begin
+  if Pos('*', AFilename) > 0 then
+  begin
+    // Get all files
+  end
+  else
+  begin
+    if FileExists(AFilename) then
+    begin
+      len:= Length(FFileList);
+      SetLength(FFileList, len + 1);
+      FFileList[len]:= AFilename;
+    end;
+  end;
+end;
+
+procedure TfrmMain.ClearTree;
+begin
+  if vstJSON.RootNodeCount > 0 then
+  begin
+    vstJSON.BeginUpdate;
+    vstJSON.Clear;
+    vstJSON.EndUpdate;
+  end;
+end;
+
 procedure TfrmMain.SetupPropStorage;
 begin
+  if not DirectoryExists(GetAppConfigDir(False)) then
+  begin
+    CreateDir(GetAppConfigDir(False));
+  end;
   JSONPropStorage.JSONFileName:= GetAppConfigFile(False);
   JSONPropStorage.RootObjectPath:= 'Application';
   JSONPropStorage.Active:= True;
@@ -528,7 +581,6 @@ end;
 procedure TfrmMain.ProcessParams;
 var
   index: Integer;
-  len: Integer;
   params: Integer;
   param: String;
 begin
@@ -536,19 +588,7 @@ begin
   for index:= 1 to params do
   begin
     param:=ParamStr(index);
-    if Pos('*', param) > 0 then
-    begin
-      // Get all files
-    end
-    else
-    begin
-      if FileExists(param) then
-      begin
-        len:= Length(FFileList);
-        SetLength(FFileList, len + 1);
-        FFileList[len]:= param;
-      end;
-    end;
+    AddFile(param);
   end;
 end;
 
@@ -556,6 +596,10 @@ procedure TfrmMain.UpdateFileList;
 var
   filename: String;
 begin
+  if lbFiles.Count > 0 then
+  begin
+    lbFiles.Clear;
+  end;
   for filename in FFileList do
   begin
     lbFiles.Items.Add(ExtractFileName(filename));

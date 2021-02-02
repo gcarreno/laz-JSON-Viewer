@@ -14,6 +14,10 @@ msgstr ""
 msgid " B"
 msgstr ""
 
+#: ljv.forms.main.rscaptionvalue
+msgid "Value"
+msgstr ""
+
 #: ljv.forms.main.rsformcaption
 #, object-pascal-format
 msgid "JSON Viewer v%s"
@@ -169,5 +173,9 @@ msgstr ""
 
 #: tfrmmain.lbltype.caption
 msgid "lblType"
+msgstr ""
+
+#: tfrmmain.lblvalue.caption
+msgid "lblValue"
 msgstr ""
 

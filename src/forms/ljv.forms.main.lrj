@@ -2,5 +2,6 @@
 {"hash":227686302,"name":"tfrmmain.caption","sourcebytes":[102,114,109,77,97,105,110],"value":"frmMain"},
 {"hash":43106325,"name":"tfrmmain.lbltype.caption","sourcebytes":[108,98,108,84,121,112,101],"value":"lblType"},
 {"hash":43075653,"name":"tfrmmain.lblname.caption","sourcebytes":[108,98,108,78,97,109,101],"value":"lblName"},
-{"hash":151678324,"name":"tfrmmain.lblcount.caption","sourcebytes":[108,98,108,67,111,117,110,116],"value":"lblCount"}
+{"hash":151678324,"name":"tfrmmain.lblcount.caption","sourcebytes":[108,98,108,67,111,117,110,116],"value":"lblCount"},
+{"hash":152863893,"name":"tfrmmain.lblvalue.caption","sourcebytes":[108,98,108,86,97,108,117,101],"value":"lblValue"}
 ]}

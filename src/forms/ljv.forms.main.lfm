@@ -2,19 +2,21 @@ object frmMain: TfrmMain
   Left = 338
   Height = 563
   Top = 250
-  Width = 1017
+  Width = 1021
+  AllowDropFiles = True
   Caption = 'frmMain'
   ClientHeight = 563
-  ClientWidth = 1017
+  ClientWidth = 1021
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnDropFiles = FormDropFiles
   SessionProperties = 'Top;Left;Height;Width;WindowState'
   object psMain: TPairSplitter
     Cursor = crDefault
     Left = 224
     Height = 563
     Top = 0
-    Width = 793
+    Width = 797
     Align = alClient
     Position = 400
     object pssTree: TPairSplitterSide
@@ -51,17 +53,17 @@ object frmMain: TfrmMain
       Left = 405
       Height = 563
       Top = 0
-      Width = 388
-      ClientWidth = 388
+      Width = 392
+      ClientWidth = 392
       ClientHeight = 563
       object panItem: TPanel
         Left = 0
         Height = 80
         Top = 0
-        Width = 388
+        Width = 392
         Align = alTop
         ClientHeight = 80
-        ClientWidth = 388
+        ClientWidth = 392
         TabOrder = 0
         object lblType: TLabel
           Left = 8
@@ -90,12 +92,19 @@ object frmMain: TfrmMain
       end
       object panValue: TPanel
         Left = 0
-        Height = 475
-        Top = 88
-        Width = 388
-        Align = alBottom
+        Height = 451
+        Top = 112
+        Width = 392
         Anchors = [akTop, akLeft, akRight, akBottom]
         TabOrder = 1
+      end
+      object lblValue: TLabel
+        Left = 0
+        Height = 17
+        Top = 88
+        Width = 54
+        Caption = 'lblValue'
+        ParentColor = False
       end
     end
   end
@@ -123,7 +132,7 @@ object frmMain: TfrmMain
     StoredValues = <>
     Formatted = False
     Active = False
-    Left = 768
-    Top = 400
+    Left = 80
+    Top = 464
   end
 end
