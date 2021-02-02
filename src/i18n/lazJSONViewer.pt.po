@@ -15,6 +15,10 @@ msgstr ""
 msgid " B"
 msgstr " B"
 
+#: ljv.forms.main.rscaptionpath
+msgid "Path"
+msgstr "Caminho"
+
 #: ljv.forms.main.rscaptionvalue
 msgid "Value"
 msgstr "Valor"
@@ -172,11 +176,14 @@ msgstr "lblCount"
 msgid "lblName"
 msgstr "lblName"
 
+#: tfrmmain.lblpath.caption
+msgid "lblPath"
+msgstr "lblPath"
+
 #: tfrmmain.lbltype.caption
 msgid "lblType"
 msgstr "lblType"
 
 #: tfrmmain.lblvalue.caption
 msgid "lblValue"
-msgstr ""
-
+msgstr "lblValue"

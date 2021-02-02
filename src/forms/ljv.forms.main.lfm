@@ -14,7 +14,7 @@ object frmMain: TfrmMain
   object psMain: TPairSplitter
     Cursor = crDefault
     Left = 224
-    Height = 563
+    Height = 528
     Top = 0
     Width = 797
     Align = alClient
@@ -22,14 +22,14 @@ object frmMain: TfrmMain
     object pssTree: TPairSplitterSide
       Cursor = crArrow
       Left = 0
-      Height = 563
+      Height = 528
       Top = 0
       Width = 400
       ClientWidth = 400
-      ClientHeight = 563
+      ClientHeight = 528
       object vstJSON: TVirtualStringTree
         Left = 0
-        Height = 563
+        Height = 528
         Top = 0
         Width = 400
         Align = alClient
@@ -51,11 +51,11 @@ object frmMain: TfrmMain
     object pssNode: TPairSplitterSide
       Cursor = crArrow
       Left = 405
-      Height = 563
+      Height = 528
       Top = 0
       Width = 392
       ClientWidth = 392
-      ClientHeight = 563
+      ClientHeight = 528
       object panItem: TPanel
         Left = 0
         Height = 80
@@ -92,7 +92,7 @@ object frmMain: TfrmMain
       end
       object panValue: TPanel
         Left = 0
-        Height = 451
+        Height = 416
         Top = 112
         Width = 392
         Anchors = [akTop, akLeft, akRight, akBottom]
@@ -110,7 +110,7 @@ object frmMain: TfrmMain
   end
   object lbFiles: TListBox
     Left = 0
-    Height = 563
+    Height = 528
     Top = 0
     Width = 219
     Align = alLeft
@@ -124,9 +124,27 @@ object frmMain: TfrmMain
   end
   object Splitter1: TSplitter
     Left = 219
-    Height = 563
+    Height = 528
     Top = 0
     Width = 5
+  end
+  object panPath: TPanel
+    Left = 0
+    Height = 35
+    Top = 528
+    Width = 1021
+    Align = alBottom
+    ClientHeight = 35
+    ClientWidth = 1021
+    TabOrder = 3
+    object lblPath: TLabel
+      Left = 8
+      Height = 17
+      Top = 8
+      Width = 48
+      Caption = 'lblPath'
+      ParentColor = False
+    end
   end
   object JSONPropStorage: TJSONPropStorage
     StoredValues = <>

@@ -45,7 +45,9 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    lblPath: TLabel;
     lblValue: TLabel;
+    panPath: TPanel;
     panValue: TPanel;
     JSONPropStorage: TJSONPropStorage;
     lblCount: TLabel;
@@ -85,7 +87,7 @@ type
     procedure LoadFile(const AFilename: String);
     procedure UpdateTree;
     procedure UpdateTreeFromNode(const ANode: PVirtualNode;
-      const AJSONData: TJSONData);
+      const AJSONData: TJSONData; const APath: String);
     procedure ShowValue(const AJSONData: TJSONData);
   public
 
@@ -130,6 +132,7 @@ resourcestring
   rsLabelDateTime = 'Date';
   rsLabelBytes = 'Bytes';
   rsLabelScientific = 'Scientific';
+  rsCaptionPath = 'Path';
 
   rsBytes = ' B';
   rsKiloBytes = ' KB';
@@ -232,6 +235,7 @@ begin
     treeNode:= vstJSON.GetNodeData(Node);
     if Assigned(treeNode) then
     begin
+      lblPath.Caption:= Format('%s: %s', [rsCaptionPath, treeNode^.NodePath]);
       sName:= treeNode^.NodeName;
       iIndex:= treeNode^.NodeIndex;
       if Length(sName) > 0 then
@@ -576,6 +580,7 @@ begin
   lblName.Caption:= rsLabelNameEmpty;
   lblType.Caption:= rsLabelTypeEmpty;
   lblCount.Caption:= rsLabelCountEmpty;
+  lblPath.Caption:= '';
 end;
 
 procedure TfrmMain.ProcessParams;
@@ -635,13 +640,13 @@ begin
   vstJSON.Clear;
   if Assigned(FJSON) then
   begin
-    UpdateTreeFromNode(vstJSON.RootNode, FJSON);
+    UpdateTreeFromNode(vstJSON.RootNode, FJSON, 'ROOT');
   end;
   vstJSON.EndUpdate;
 end;
 
 procedure TfrmMain.UpdateTreeFromNode(const ANode: PVirtualNode;
-  const AJSONData: TJSONData);
+  const AJSONData: TJSONData; const APath: String);
 var
   index: Integer;
   node: PVirtualNode;
@@ -657,9 +662,12 @@ begin
       begin
         treeNode^.NodeType:= AJSONData.Items[index].JSONType;
         treeNode^.NodeData:= AJSONData.Items[index];
+        treeNode^.NodePath:= APath;
+
         if AJSONData.JSONType = jtObject then
         begin
           treeNode^.NodeName:= TJSONObject(AJSONData).Names[index];
+          treeNode^.NodePath:= treeNode^.NodePath + '.' + treeNode^.NodeName;
         end
         else
         begin
@@ -669,6 +677,7 @@ begin
         if AJSONData.JSONType = jtArray then
         begin
           treeNode^.NodeIndex:= index;
+          treeNode^.NodePath:= treeNode^.NodePath + Format('[%d]', [index]);
         end
         else
         begin
@@ -677,12 +686,12 @@ begin
 
         if AJSONData.Items[index].JSONType = jtObject then
         begin
-          UpdateTreeFromNode(node, AJSONData.Items[index]);
+          UpdateTreeFromNode(node, AJSONData.Items[index], treeNode^.NodePath);
         end;
 
         if AJSONData.Items[index].JSONType = jtArray then
         begin
-          UpdateTreeFromNode(node, AJSONData.Items[index]);
+          UpdateTreeFromNode(node, AJSONData.Items[index], treeNode^.NodePath);
         end;
       end;
     end;
