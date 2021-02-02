@@ -1,7 +1,9 @@
 # Lazarus JSON Viewer
 
 [![Build Status](https://github.com/gcarreno/laz-JSON-Viewer/workflows/build-test/badge.svg?branch=master)](https://github.com/gcarreno/laz-JSON-Viewer/actions)
-
+[![License](https://img.shields.io/github/license/gcarreno/laz-JSON-Viewer)](https://github.com/gcarreno/laz-JSON-Viewer/blob/master/LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/gcarreno/laz-JSON-Viewer?label=latest%20release)](https://github.com/gcarreno/laz-JSON-Viewer/releases)
+![Downloads](https://img.shields.io/github/downloads/gcarreno/laz-JSON-Viewer/total)
 
 Simple application to view a JSON file.
 
