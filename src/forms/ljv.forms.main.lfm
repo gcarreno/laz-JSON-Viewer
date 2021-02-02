@@ -3,11 +3,14 @@ object frmMain: TfrmMain
   Height = 563
   Top = 250
   Width = 1017
+  AllowDropFiles = True
   Caption = 'frmMain'
   ClientHeight = 563
   ClientWidth = 1017
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnDropFiles = FormDropFiles
+  LCLVersion = '2.0.10.0'
   object psMain: TPairSplitter
     Cursor = crDefault
     Left = 224
@@ -35,7 +38,7 @@ object frmMain: TfrmMain
         Header.Columns = <        
           item
             Position = 0
-            Width = 398
+            Width = 396
           end>
         Header.Options = [hoAutoResize, hoColumnResize, hoDrag, hoShowSortGlyphs]
         TabOrder = 0
@@ -64,25 +67,25 @@ object frmMain: TfrmMain
         TabOrder = 0
         object lblType: TLabel
           Left = 8
-          Height = 17
+          Height = 15
           Top = 32
-          Width = 49
+          Width = 37
           Caption = 'lblType'
           ParentColor = False
         end
         object lblName: TLabel
           Left = 8
-          Height = 17
+          Height = 15
           Top = 8
-          Width = 57
+          Width = 45
           Caption = 'lblName'
           ParentColor = False
         end
         object lblCount: TLabel
           Left = 8
-          Height = 17
+          Height = 15
           Top = 56
-          Width = 57
+          Width = 46
           Caption = 'lblCount'
           ParentColor = False
         end
@@ -110,7 +113,6 @@ object frmMain: TfrmMain
     ScrollWidth = 217
     ShowHint = True
     TabOrder = 1
-    TopIndex = -1
   end
   object Splitter1: TSplitter
     Left = 219

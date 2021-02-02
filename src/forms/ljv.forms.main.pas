@@ -58,6 +58,7 @@ type
     panItem: TPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
     procedure lbFilesSelectionChange(Sender: TObject; User: boolean);
     procedure vstJSONChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure vstJSONGetNodeDataSize(Sender: TBaseVirtualTree;
@@ -73,6 +74,7 @@ type
     procedure ClearLabels;
     procedure CorrectPSCursor;
     procedure ProcessParams;
+    procedure AddFile(path: String);
     procedure UpdateFileList;
     procedure LoadFile(const AFilename: String);
     procedure UpdateTree;
@@ -171,6 +173,17 @@ begin
   begin
     FJSON.Free;
   end;
+end;
+
+procedure TfrmMain.FormDropFiles(Sender: TObject; const FileNames: array of String);
+var
+  i: Integer;
+begin
+  for i := 0 to length(FileNames)-1 do
+  begin
+    AddFile(FileNames[i]);
+  end;
+  UpdateFileList;
 end;
 
 procedure TfrmMain.lbFilesSelectionChange(Sender: TObject; User: boolean);
@@ -510,7 +523,6 @@ end;
 procedure TfrmMain.ProcessParams;
 var
   index: Integer;
-  len: Integer;
   params: Integer;
   param: String;
 begin
@@ -524,13 +536,19 @@ begin
     end
     else
     begin
-      if FileExists(param) then
-      begin
-        len:= Length(FFileList);
-        SetLength(FFileList, len + 1);
-        FFileList[len]:= param;
-      end;
+      AddFile(param);
     end;
+  end;
+end;
+
+procedure TfrmMain.AddFile(path: String);
+var
+  len: Integer;
+begin
+  begin
+    len:= Length(FFileList);
+    SetLength(FFileList, len + 1);
+    FFileList[len]:= path;
   end;
 end;
 
