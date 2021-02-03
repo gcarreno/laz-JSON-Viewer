@@ -27,11 +27,11 @@ unit LJV.Application.Version;
 interface
 
 const
-  cVersion = '0.1.7.29';
+  cVersion = '0.1.7.30';
   cVersionMajor = 0;
   cVersionMinor = 1;
   cVersionRevision = 7;
-  cVersionBuild = 29;
+  cVersionBuild = 30;
 
 implementation
 

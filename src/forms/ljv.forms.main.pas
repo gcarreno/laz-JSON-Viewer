@@ -537,7 +537,7 @@ begin
     begin
       len:= Length(FFileList);
       SetLength(FFileList, len + 1);
-      FFileList[len]:= AFilename;
+      FFileList[len]:= ExpandFileName(AFilename);
     end;
   end;
 end;
