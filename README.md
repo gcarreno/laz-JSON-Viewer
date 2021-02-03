@@ -27,8 +27,8 @@ At the moment I don't have an answer. Need to consult some Windows gurus.
 
 ## Screeshots
 One file, none selected
-![Picture1](images/lazJSONViewer-picture1.png)
+![Picture1](images/lazJSONViewer-linux-picture1.png)
 One file, one selected, node selected
-![Picture2](images/lazJSONViewer-picture2.png)
+![Picture2](images/lazJSONViewer-linux-picture2.png)
 Many files, one selected, node selected
-![Picture3](images/lazJSONViewer-picture3.png)
+![Picture3](images/lazJSONViewer-linux-picture3.png)
