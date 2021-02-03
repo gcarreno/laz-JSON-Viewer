@@ -1,12 +1,12 @@
 [
     {
         "type": "header",
-        "message": "don\'t kill the messenger",
+        "message": "don't kill the messenger",
         "status": 200
     },
     {
         "type": "comment",
-        "content": "What\'s up doc?!"
+        "content": "What's up doc?!"
     },
     {
         "type": "array",
