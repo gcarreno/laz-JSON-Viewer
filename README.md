@@ -7,6 +7,21 @@
 
 Simple application to view a JSON file.
 
+**Table of contents**
+
+- [Keys](#Keys)
+- [Setup as default viewer](#setup-as-default-viewer)
+  - [Linux (Unbuntu)](#linux-ubuntu)
+  - [Windows](#windows)
+- [Screenshots](#screenshots)
+
+
+## Keys
+
+- The `Escape` key exits the application.
+- On linux the `Ctrl+Q` key combination, exits the application.
+- On Windows the `Atl+X` key combination, exits the application.
+
 ## Setup as default viewer
 
 ### Linux (Ubuntu)
@@ -25,7 +40,7 @@ application/json=jsonviewer.desktop
 
 At the moment I don't have an answer. Need to consult some Windows gurus.
 
-## Screeshots
+## Screenshots
 One file, none selected
 ![Picture1](images/lazJSONViewer-linux-picture1.png)
 One file, one selected, node selected
