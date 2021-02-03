@@ -163,6 +163,14 @@ msgctxt "ljv.forms.main.rsvstunknown"
 msgid "Unknown"
 msgstr ""
 
+#: tfrmmain.actfileexit.caption
+msgid "E&xit"
+msgstr ""
+
+#: tfrmmain.actfileexit.hint
+msgid "Exit"
+msgstr ""
+
 #: tfrmmain.caption
 msgid "frmMain"
 msgstr ""

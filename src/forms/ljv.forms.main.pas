@@ -35,7 +35,7 @@ uses
 , Dialogs
 , ExtCtrls
 , StdCtrls
-, PairSplitter, JSONPropStorage
+, PairSplitter, JSONPropStorage, ActnList, StdActns
 , fpjson
 , VirtualTrees
 ;
@@ -45,6 +45,8 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    alMain: TActionList;
+    actFileExit: TFileExit;
     lblPath: TLabel;
     lblValue: TLabel;
     panPath: TPanel;
@@ -72,6 +74,8 @@ type
   private
     FJSON: TJSONData;
     FFileList: Array of String;
+
+    procedure SetupShortcuts;
 
     procedure AddFile(const AFilename: String);
     procedure ClearTree;
@@ -103,6 +107,7 @@ implementation
 uses
   StrUtils
 , DateUtils
+, LCLType
 , LJV.Application.Version
 , LJV.JSON.Utils
 , LJV.Tree.Nodes
@@ -163,6 +168,7 @@ const
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   SetupPropStorage;
+  SetupShortcuts;
   Caption:= Format(rsFormCaption, [cVersion]);
   lblValue.Caption:= rsCaptionValue;
   ClearLabels;
@@ -485,6 +491,17 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TfrmMain.SetupShortcuts;
+begin
+  actFileExit.SecondaryShortCuts.Add('Esc');
+{$IFDEF LINUX}
+  actFileExit.ShortCut := KeyToShortCut(VK_Q, [ssCtrl]);
+{$ENDIF}
+{$IFDEF WINDOWS}
+  actFileExit.ShortCut := KeyToShortCut(VK_X, [ssAlt]);
+{$ENDIF}
 end;
 
 function TfrmMain.FormatBytes(ABytes: Int64): String;
