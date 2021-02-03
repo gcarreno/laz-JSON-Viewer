@@ -543,6 +543,8 @@ end;
 procedure TfrmMain.AddFile(const AFilename: String);
 var
   len: Integer;
+  isDuplicate: Boolean;
+  filename: String;
 begin
   if Pos('*', AFilename) > 0 then
   begin
@@ -552,9 +554,21 @@ begin
   begin
     if FileExists(AFilename) then
     begin
-      len:= Length(FFileList);
-      SetLength(FFileList, len + 1);
-      FFileList[len]:= ExpandFileName(AFilename);
+      isDuplicate:= False;
+      for filename in FFileList do
+      begin
+        if filename = AFilename then
+        begin
+          isDuplicate:= True;
+          break;
+        end;
+      end;
+      if not isDuplicate then
+      begin
+        len:= Length(FFileList);
+        SetLength(FFileList, len + 1);
+        FFileList[len]:= ExpandFileName(AFilename);
+      end;
     end;
   end;
 end;
