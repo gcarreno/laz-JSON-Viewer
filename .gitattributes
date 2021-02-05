@@ -18,6 +18,7 @@
 *.txt  text
 
 # Declare files that will always have CRLF line endings on checkout.
+*.iss   text eol=crlf
 *.dpk   text eol=crlf
 *.dproj text eol=crlf
 
@@ -38,3 +39,4 @@
 /tests          export-ignore
 /builds         export-ignore
 /images         export-ignore
+/scripts        export-ignore
