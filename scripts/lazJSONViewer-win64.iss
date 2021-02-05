@@ -30,13 +30,13 @@ LicenseFile=D:\Programming\laz-JSON-Viewer\LICENSE
 ;PrivilegesRequiredOverridesAllowed=commandline
 OutputDir=D:\Programming\laz-JSON-Viewer\bin\dist\win64Setup
 OutputBaseFilename=lazJSONViewer-{#MyAppVersion}-win64-setup
-Compression=lzma
+Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
-Name: "portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
+;Name: "portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked

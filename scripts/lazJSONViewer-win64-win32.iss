@@ -28,11 +28,12 @@ LicenseFile=D:\Programming\laz-JSON-Viewer\LICENSE
 ; Remove the following line to run in administrative install mode (install for all users.)
 ;PrivilegesRequired=lowest
 ;PrivilegesRequiredOverridesAllowed=commandline
-OutputDir=D:\Programming\laz-JSON-Viewer\bin\dist\win32Setup
-OutputBaseFilename=lazJSONViewer-{#MyAppVersion}-win32-setup
+OutputDir=D:\Programming\laz-JSON-Viewer\bin\dist
+OutputBaseFilename=lazJSONViewer-{#MyAppVersion}-win64-win32-setup
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
+ArchitecturesInstallIn64BitMode=x64
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -42,7 +43,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\Programming\laz-JSON-Viewer\bin\i386\win32\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Programming\laz-JSON-Viewer\bin\x86_64\win64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
+Source: "D:\Programming\laz-JSON-Viewer\bin\i386\win32\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
 Source: "D:\Programming\laz-JSON-Viewer\src\i18n\*.po"; DestDir: "{app}\i18n"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
