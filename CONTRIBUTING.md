@@ -131,6 +131,7 @@ The type is contained within the title and can be one of these types:
 * feat: a new feature
 * fix: a bug fix
 * docs: changes to documentation
+* i18n: changes to translation files
 * style: formatting, missing semi colons, etc; no code change
 * refactor: refactoring production code
 * test: adding tests, refactoring test; no production code change
