@@ -658,6 +658,8 @@ begin
       on E: Exception do
       begin
         ShowMessage(Format('Looks like "%s" isn''t a JSON file', [AFilename]));
+        WriteLN('Error:');
+        WriteLN(E.Message);
       end;
     end;
   finally

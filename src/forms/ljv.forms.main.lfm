@@ -11,6 +11,7 @@ object frmMain: TfrmMain
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   SessionProperties = 'Top;Left;Height;Width;WindowState'
+  LCLVersion = '2.1.0.0'
   object psMain: TPairSplitter
     Cursor = crDefault
     Left = 224
@@ -38,7 +39,7 @@ object frmMain: TfrmMain
         Header.Columns = <        
           item
             Position = 0
-            Width = 398
+            Width = 400
           end>
         Header.Options = [hoAutoResize, hoColumnResize, hoDrag, hoShowSortGlyphs]
         TabOrder = 0
