@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="12"/>
+    <Version Value="11"/>
     <General>
-      <Flags>
-        <CompatibilityMode Value="True"/>
-      </Flags>
       <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
       <Title Value="lazJSONViewer"/>
       <Scaled Value="True"/>
       <ResourceType Value="res"/>
@@ -27,7 +25,7 @@
       <BuildNr Value="33"/>
       <Language Value="0809"/>
     </VersionInfo>
-    <BuildModes Count="4">
+    <BuildModes Count="3">
       <Item1 Name="Default" Default="True"/>
       <Item2 Name="Debug">
         <CompilerOptions>
@@ -98,36 +96,6 @@
           </Linking>
         </CompilerOptions>
       </Item3>
-      <Item4 Name="Release-linux-i386">
-        <CompilerOptions>
-          <Version Value="11"/>
-          <Target>
-            <Filename Value="../bin/$(TargetCPU)/$(TargetOS)/lazJSONViewer"/>
-          </Target>
-          <SearchPaths>
-            <Libraries Value="/usr/lib/gcc/i686-linux-gnu/9/"/>
-            <OtherUnitFiles Value="forms;tree;json;application"/>
-            <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
-          </SearchPaths>
-          <CodeGeneration>
-            <SmartLinkUnit Value="True"/>
-            <Optimizations>
-              <OptimizationLevel Value="3"/>
-            </Optimizations>
-          </CodeGeneration>
-          <Linking>
-            <Debugging>
-              <GenerateDebugInfo Value="False"/>
-            </Debugging>
-            <LinkSmart Value="True"/>
-            <Options>
-              <Win32>
-                <GraphicApplication Value="True"/>
-              </Win32>
-            </Options>
-          </Linking>
-        </CompilerOptions>
-      </Item4>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>

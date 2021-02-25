@@ -195,3 +195,4 @@ msgstr "lblType"
 #: tfrmmain.lblvalue.caption
 msgid "lblValue"
 msgstr "lblValue"
+
