@@ -40,6 +40,7 @@ uses
 
 begin
   RequireDerivedFormResource:=True;
+  Application.Title:='laz-JSON-Viewer';
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);

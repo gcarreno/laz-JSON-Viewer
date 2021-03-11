@@ -1,10 +1,13 @@
 {"version":1,"strings":[
 {"hash":227686302,"name":"tfrmmain.caption","sourcebytes":[102,114,109,77,97,105,110],"value":"frmMain"},
+{"hash":43083992,"name":"tfrmmain.lblpath.caption","sourcebytes":[108,98,108,80,97,116,104],"value":"lblPath"},
+{"hash":2865333,"name":"tfrmmain.tstree.caption","sourcebytes":[38,84,114,101,101],"value":"&Tree"},
 {"hash":43106325,"name":"tfrmmain.lbltype.caption","sourcebytes":[108,98,108,84,121,112,101],"value":"lblType"},
 {"hash":43075653,"name":"tfrmmain.lblname.caption","sourcebytes":[108,98,108,78,97,109,101],"value":"lblName"},
 {"hash":151678324,"name":"tfrmmain.lblcount.caption","sourcebytes":[108,98,108,67,111,117,110,116],"value":"lblCount"},
 {"hash":152863893,"name":"tfrmmain.lblvalue.caption","sourcebytes":[108,98,108,86,97,108,117,101],"value":"lblValue"},
-{"hash":43083992,"name":"tfrmmain.lblpath.caption","sourcebytes":[108,98,108,80,97,116,104],"value":"lblPath"},
+{"hash":2816062,"name":"tfrmmain.tsjson.caption","sourcebytes":[38,74,83,79,78],"value":"&JSON"},
 {"hash":4710148,"name":"tfrmmain.actfileexit.caption","sourcebytes":[69,38,120,105,116],"value":"E&xit"},
-{"hash":315140,"name":"tfrmmain.actfileexit.hint","sourcebytes":[69,120,105,116],"value":"Exit"}
+{"hash":315140,"name":"tfrmmain.actfileexit.hint","sourcebytes":[69,120,105,116],"value":"Exit"},
+{"hash":80390782,"name":"tfrmmain.actviewtreejson.caption","sourcebytes":[86,105,101,119,32,84,114,101,101,47,74,83,79,78],"value":"View Tree/JSON"}
 ]}

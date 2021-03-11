@@ -155,6 +155,10 @@ msgstr ""
 msgid "Exit"
 msgstr ""
 
+#: tfrmmain.actviewtreejson.caption
+msgid "View Tree/JSON"
+msgstr ""
+
 #: tfrmmain.caption
 msgid "frmMain"
 msgstr ""
@@ -177,5 +181,13 @@ msgstr ""
 
 #: tfrmmain.lblvalue.caption
 msgid "lblValue"
+msgstr ""
+
+#: tfrmmain.tsjson.caption
+msgid "JSON"
+msgstr ""
+
+#: tfrmmain.tstree.caption
+msgid "Tree"
 msgstr ""
 

@@ -172,6 +172,10 @@ msgstr "&Sair"
 msgid "Exit"
 msgstr "Sair"
 
+#: tfrmmain.actviewtreejson.caption
+msgid "View Tree/JSON"
+msgstr "Ver Árvore/JSON"
+
 #: tfrmmain.caption
 msgid "frmMain"
 msgstr "frmMain"
@@ -196,3 +200,10 @@ msgstr "lblType"
 msgid "lblValue"
 msgstr "lblValue"
 
+#: tfrmmain.tsjson.caption
+msgid "&JSON"
+msgstr "&JSON"
+
+#: tfrmmain.tstree.caption
+msgid "&Tree"
+msgstr "&Árvore"

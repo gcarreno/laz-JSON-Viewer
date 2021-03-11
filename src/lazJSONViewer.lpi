@@ -7,12 +7,14 @@
         <CompatibilityMode Value="True"/>
       </Flags>
       <SessionStorage Value="InProjectDir"/>
-      <Title Value="lazJSONViewer"/>
+      <Title Value="laz-JSON-Viewer"/>
       <Scaled Value="True"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <XPManifest>
         <DpiAware Value="True"/>
+        <TextName Value="lazJSONViewer"/>
+        <TextDesc Value="JSON viewer."/>
       </XPManifest>
       <Icon Value="0"/>
     </General>
@@ -23,8 +25,8 @@
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="1"/>
-      <RevisionNr Value="8"/>
-      <BuildNr Value="33"/>
+      <RevisionNr Value="9"/>
+      <BuildNr Value="34"/>
       <Language Value="0809"/>
     </VersionInfo>
     <BuildModes Count="3">
@@ -36,6 +38,7 @@
             <Filename Value="../bin/lazJSONViewer"/>
           </Target>
           <SearchPaths>
+            <IncludeFiles Value="$(ProjOutDir)"/>
             <OtherUnitFiles Value="forms;tree;json;application"/>
             <UnitOutputDirectory Value="../bin/lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
@@ -116,13 +119,16 @@
         </Mode0>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="3">
       <Item1>
-        <PackageName Value="virtualtreeview_package"/>
+        <PackageName Value="SynEdit"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="virtualtreeview_package"/>
       </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
     </RequiredPackages>
     <Units Count="5">
       <Unit0>

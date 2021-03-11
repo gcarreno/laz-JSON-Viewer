@@ -40,7 +40,7 @@ uses
 , PairSplitter
 , JSONPropStorage
 , ActnList
-, StdActns
+, StdActns, ComCtrls, SynEdit, SynHighlighterJScript
 , fpjson
 , VirtualTrees
 ;
@@ -50,10 +50,12 @@ type
   { TfrmMain }
 
   TfrmMain = class(TForm)
+    actViewTreeJSON: TAction;
     alMain: TActionList;
     actFileExit: TFileExit;
     lblPath: TLabel;
     lblValue: TLabel;
+    pcMain: TPageControl;
     panPath: TPanel;
     panValue: TPanel;
     JSONPropStorage: TJSONPropStorage;
@@ -65,8 +67,13 @@ type
     pssTree: TPairSplitterSide;
     pssNode: TPairSplitterSide;
     Splitter1: TSplitter;
+    SynEdit: TSynEdit;
+    SynJScriptSyn: TSynJScriptSyn;
+    tsTree: TTabSheet;
+    tsJSON: TTabSheet;
     vstJSON: TVirtualStringTree;
     panItem: TPanel;
+    procedure actViewTreeJSONExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
@@ -176,6 +183,7 @@ begin
   SetupShortcuts;
   Caption:= Format(rsFormCaption, [cVersion]);
   lblValue.Caption:= rsCaptionValue;
+  pcMain.ActivePageIndex:= 0;
   ClearLabels;
   CorrectPSCursor;
   ProcessParams;
@@ -188,6 +196,18 @@ begin
   //begin
   //  lbFiles.ItemIndex:= 0;
   //end;
+end;
+
+procedure TfrmMain.actViewTreeJSONExecute(Sender: TObject);
+begin
+  if pcMain.ActivePageIndex = 0 then
+  begin
+    pcMain.ActivePageIndex:= 1;
+  end
+  else
+  begin
+    pcMain.ActivePageIndex:= 0;
+  end;
 end;
 
 procedure TfrmMain.FormDestroy(Sender: TObject);
@@ -650,6 +670,8 @@ end;
 procedure TfrmMain.LoadFile(const AFilename: String);
 var
   JSONFileStream: TFileStream;
+  JSONStrings: TStringList;
+  index: Integer;
 begin
   JSONFileStream:= TFileStream.Create(AFilename, fmOpenRead);
   try
@@ -659,6 +681,20 @@ begin
     end;
     try
       FJSON:= GetJSONData(JSONFileStream);
+      SynEdit.BeginUpdate(False);
+      SynEdit.Clear;
+      JSONStrings:= TStringList.Create;
+      try
+        FJSON.CompressedJSON:= False;
+        JSONStrings.Text:= FJSON.FormatJSON;
+        for index:= 0 to Pred(JSONStrings.Count) do
+        begin
+          SynEdit.Append(JSONStrings[index]);
+        end;
+      finally
+        JSONStrings.Free;
+      end;
+      SynEdit.EndUpdate;
     except
       on E: Exception do
       begin
