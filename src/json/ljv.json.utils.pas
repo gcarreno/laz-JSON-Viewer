@@ -1,5 +1,7 @@
 { Implements JSON.Utils
 
+  This file is part of laz-JSON-Viewer
+
   Copyright (c) 2021 Gustavo Carreno <guscarreno@gmail.com>
 
   Permission is hereby granted, free of charge, to any person obtaining a copy

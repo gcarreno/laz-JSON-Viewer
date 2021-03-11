@@ -1,0 +1,181 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: ljv.forms.main.rsbytes
+msgid " B"
+msgstr ""
+
+#: ljv.forms.main.rscaptionpath
+msgid "Path"
+msgstr ""
+
+#: ljv.forms.main.rscaptionvalue
+msgid "Value"
+msgstr ""
+
+#: ljv.forms.main.rsformcaption
+msgid "JSON Viewer v%s"
+msgstr ""
+
+#: ljv.forms.main.rsformcaptionfile
+msgid "JSON Viewer (%s) v%s"
+msgstr ""
+
+#: ljv.forms.main.rsgigabytes
+msgid " GB"
+msgstr ""
+
+#: ljv.forms.main.rskilobytes
+msgid " KB"
+msgstr ""
+
+#: ljv.forms.main.rslabelbinary
+msgid "Binary"
+msgstr ""
+
+#: ljv.forms.main.rslabelbytes
+msgid "Bytes"
+msgstr ""
+
+#: ljv.forms.main.rslabelcountarray
+msgid "Items: %d"
+msgstr ""
+
+#: ljv.forms.main.rslabelcountempty
+msgid "Member Count"
+msgstr ""
+
+#: ljv.forms.main.rslabelcountna
+msgid "N/A"
+msgstr ""
+
+#: ljv.forms.main.rslabelcountobject
+msgid "Members: %d"
+msgstr ""
+
+#: ljv.forms.main.rslabeldatetime
+msgid "Date"
+msgstr ""
+
+#: ljv.forms.main.rslabelformated
+msgid "Formated"
+msgstr ""
+
+#: ljv.forms.main.rslabelhexadecimal
+msgid "Hexadecimal"
+msgstr ""
+
+#: ljv.forms.main.rslabelnamearrayitem
+msgid "Item: %d"
+msgstr ""
+
+#: ljv.forms.main.rslabelnameempty
+msgid "Node Name/Index"
+msgstr ""
+
+#: ljv.forms.main.rslabelnamename
+msgid "Name: \"%s\""
+msgstr ""
+
+#: ljv.forms.main.rslabelscientific
+msgid "Scientific"
+msgstr ""
+
+#: ljv.forms.main.rslabeltype
+msgid "Type: %s"
+msgstr ""
+
+#: ljv.forms.main.rslabeltypeempty
+msgid "Node Type"
+msgstr ""
+
+#: ljv.forms.main.rsmegabytes
+msgid " MB"
+msgstr ""
+
+#: ljv.forms.main.rsterabytes
+msgid " TB"
+msgstr ""
+
+#: ljv.forms.main.rstypearray
+msgid "Array"
+msgstr ""
+
+#: ljv.forms.main.rstypeboolean
+msgid "Boolean"
+msgstr ""
+
+#: ljv.forms.main.rstypenull
+msgid "Null"
+msgstr ""
+
+#: ljv.forms.main.rstypenumberfloat
+msgid "Number (Float)"
+msgstr ""
+
+#: ljv.forms.main.rstypenumberint64
+msgid "Number (Int64)"
+msgstr ""
+
+#: ljv.forms.main.rstypenumberinteger
+msgid "Number (Integer)"
+msgstr ""
+
+#: ljv.forms.main.rstypenumberqword
+msgid "Number (QWord)"
+msgstr ""
+
+#: ljv.forms.main.rstypeobject
+msgid "Object"
+msgstr ""
+
+#: ljv.forms.main.rstypestring
+msgid "String"
+msgstr ""
+
+#: ljv.forms.main.rstypeunknown
+msgctxt "ljv.forms.main.rstypeunknown"
+msgid "Unknown"
+msgstr ""
+
+#: ljv.forms.main.rsvstnocolumns
+msgid "There are no Columns"
+msgstr ""
+
+#: ljv.forms.main.rsvstunknown
+msgctxt "ljv.forms.main.rsvstunknown"
+msgid "Unknown"
+msgstr ""
+
+#: tfrmmain.actfileexit.caption
+msgid "E&xit"
+msgstr ""
+
+#: tfrmmain.actfileexit.hint
+msgid "Exit"
+msgstr ""
+
+#: tfrmmain.caption
+msgid "frmMain"
+msgstr ""
+
+#: tfrmmain.lblcount.caption
+msgid "lblCount"
+msgstr ""
+
+#: tfrmmain.lblname.caption
+msgid "lblName"
+msgstr ""
+
+#: tfrmmain.lblpath.caption
+msgid "lblPath"
+msgstr ""
+
+#: tfrmmain.lbltype.caption
+msgid "lblType"
+msgstr ""
+
+#: tfrmmain.lblvalue.caption
+msgid "lblValue"
+msgstr ""
+
