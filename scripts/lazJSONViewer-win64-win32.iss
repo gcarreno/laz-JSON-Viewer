@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Laz JSON Viewer"
-#define MyAppVersion "0.1.8.32"
+#define MyAppVersion "0.1.9.34"
 #define MyAppPublisher "Gustavo Carreno"
 #define MyAppURL "https://github.com/gcarreno/laz-JSON-Viewer"
 #define MyAppExeName "lazJSONViewer.exe"
