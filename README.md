@@ -9,19 +9,31 @@ Simple application to view a JSON file.
 
 **Table of contents**
 
-- [Keys](#Keys)
+- [Features](#features)
+- [Keys](#keys)
 - [Setup as default viewer](#setup-as-default-viewer)
   - [Linux (Unbuntu)](#linux-ubuntu)
   - [Windows](#windows)
 - [Screenshots](#screenshots)
 
+## Features
+
+1. List of files to view
+2. View JSON in tree format, Tree Tab
+3. View JSON in text format, JSON Tab
+4. Drag and Drop files unto the application
+5. Multiple interpretations of the value
+  - Numbers formated and unformated
+  - Numbers displayed in Binary and Hexadecimal
+  - Numbers displayed in Bytes (B, KB, MB, GB, TB)
+  - Integer numbers displayed as date (UnixTime)
 
 ## Keys
 
 - The `F12` key toggles between Tree and JSON view.
 - The `Escape` key exits the application.
-- On linux the `Ctrl+Q` key combination, exits the application.
-- On Windows the `Atl+X` key combination, exits the application.
+- On Linux the `Ctrl+Q` key combination exits the application.
+- On Windows the `Atl+X` key combination exits the application.
 
 ## Setup as default viewer
 
