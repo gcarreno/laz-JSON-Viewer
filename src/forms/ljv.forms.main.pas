@@ -105,6 +105,8 @@ type
     procedure UpdateTreeFromNode(const ANode: PVirtualNode;
       const AJSONData: TJSONData; const APath: String);
     procedure ShowValue(const AJSONData: TJSONData);
+    function MyIntegerToBinary(const AInteger: Int64;
+      const ADigits: Integer): String;
   public
 
   end;
@@ -924,7 +926,7 @@ begin
           edt.Text:= Format('%d', [AJSONData.AsInteger]);
           edtFormated.Text:= FormatFloat(cNumberFormatInteger, AJSONData.AsFloat);
           edtScientific.Text:= FormatFloat(cNumberFormatFloatScientific, AJSONData.AsFloat);
-          edtBin.Text:= IntToBin(AJSONData.AsInt64, 32);
+          edtBin.Text:= MyIntegerToBinary(AJSONData.AsInt64, 32);
           edtHex.Text:= IntToHex(AJSONData.AsInteger, 16);
           edtBytes.Text:= FormatBytes(AJSONData.AsInteger);
           edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsInteger));
@@ -933,7 +935,7 @@ begin
           edt.Text:= Format('%d', [AJSONData.AsInt64]);
           edtFormated.Text:= FormatFloat(cNumberFormatInteger, AJSONData.AsFloat);
           edtScientific.Text:= FormatFloat(cNumberFormatFloatScientific, AJSONData.AsFloat);
-          edtBin.Text:= IntToBin(AJSONData.AsInt64, 64);
+          edtBin.Text:= MyIntegerToBinary(AJSONData.AsInt64, 64);
           edtHex.Text:= IntToHex(AJSONData.AsInt64, 16);
           edtBytes.Text:= FormatBytes(AJSONData.AsInt64);
           edtDateTime.Text:= FormatDateTime(cDateTimeFormat, UnixToDateTime(AJSONData.AsInt64));
@@ -985,6 +987,27 @@ begin
     end;
     jtObject:begin
 
+    end;
+  end;
+end;
+
+function TfrmMain.MyIntegerToBinary(const AInteger: Int64;
+  const ADigits: Integer): String;
+var
+  str: String;
+  idx: Integer;
+begin
+  Result:= '';
+  str:= IntToBin(AInteger, ADigits);
+  for idx:= 1 to Length(str) do
+  begin
+    if (idx mod 4 = 0) and (idx <> Length(str)) then
+    begin
+      Result:= ' ' +str[Succ(Length(str)) - idx] + Result;
+    end
+    else
+    begin
+      Result:= str[Succ(Length(str)) - idx] + Result;
     end;
   end;
 end;
