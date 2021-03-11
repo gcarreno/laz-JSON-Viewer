@@ -689,6 +689,8 @@ object frmMain: TfrmMain
   end
   object SynJScriptSyn: TSynJScriptSyn
     Enabled = False
+    NumberAttri.Foreground = clGreen
+    StringAttri.Foreground = clFuchsia
     Left = 88
     Top = 448
   end

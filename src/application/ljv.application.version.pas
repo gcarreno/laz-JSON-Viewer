@@ -33,7 +33,7 @@ const
   cVersionMajor = 0;
   cVersionMinor = 1;
   cVersionRevision = 9;
-  cVersionBuild = 34;
+  cVersionBuild = 35;
 
 implementation
 

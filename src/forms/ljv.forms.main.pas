@@ -93,11 +93,11 @@ type
     procedure ClearTree;
     function FormatBytes(ABytes: Int64): String;
 
-    procedure SetupPropStorage;
-    procedure ShutdownPropStorage;
+    procedure OpenPropStorage;
+    procedure ClosePropStorage;
 
     procedure ClearLabels;
-    procedure CorrectPSCursor;
+    procedure CorrectPairSplitterCursor;
     procedure ProcessParams;
     procedure UpdateFileList;
     procedure LoadFile(const AFilename: String);
@@ -179,13 +179,13 @@ const
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
-  SetupPropStorage;
+  OpenPropStorage;
   SetupShortcuts;
   Caption:= Format(rsFormCaption, [cVersion]);
   lblValue.Caption:= rsCaptionValue;
   pcMain.ActivePageIndex:= 0;
   ClearLabels;
-  CorrectPSCursor;
+  CorrectPairSplitterCursor;
   ProcessParams;
   UpdateFileList;
   {
@@ -216,7 +216,7 @@ begin
   begin
     FJSON.Free;
   end;
-  ShutdownPropStorage;
+  ClosePropStorage;
 end;
 
 procedure TfrmMain.FormDropFiles(Sender: TObject;
@@ -247,7 +247,10 @@ begin
     ClearLabels;
     for index:=0 to pred(panValue.ComponentCount) do
     begin
-      panValue.Components[index].Free;
+      if Assigned(panValue.Components[index]) then
+      begin
+        panValue.Components[index].Free;
+      end;
     end;
     LoadFile(FFileList[lbFiles.ItemIndex]);
     UpdateTree;
@@ -608,7 +611,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.SetupPropStorage;
+procedure TfrmMain.OpenPropStorage;
 begin
   if not DirectoryExists(GetAppConfigDir(False)) then
   begin
@@ -619,12 +622,12 @@ begin
   JSONPropStorage.Active:= True;
 end;
 
-procedure TfrmMain.ShutdownPropStorage;
+procedure TfrmMain.ClosePropStorage;
 begin
   JSONPropStorage.Active:= False;
 end;
 
-procedure TfrmMain.CorrectPSCursor;
+procedure TfrmMain.CorrectPairSplitterCursor;
 begin
   psMain.Cursor:= crHSplit;
   pssTree.Cursor:= crDefault;
