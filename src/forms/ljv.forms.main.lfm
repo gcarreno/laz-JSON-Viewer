@@ -11,6 +11,7 @@ object frmMain: TfrmMain
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   SessionProperties = 'Top;Left;Height;Width;WindowState'
+  LCLVersion = '2.1.0.0'
   object lbFiles: TListBox
     Left = 0
     Height = 528
@@ -61,7 +62,7 @@ object frmMain: TfrmMain
     TabPosition = tpBottom
     object tsTree: TTabSheet
       Caption = '&Tree'
-      ClientHeight = 497
+      ClientHeight = 494
       ClientWidth = 787
       object psMain: TPairSplitter
         Cursor = crDefault
@@ -90,7 +91,7 @@ object frmMain: TfrmMain
             Header.Columns = <            
               item
                 Position = 0
-                Width = 398
+                Width = 400
               end>
             Header.Options = [hoAutoResize, hoColumnResize, hoDrag, hoShowSortGlyphs]
             TabOrder = 0
@@ -163,7 +164,7 @@ object frmMain: TfrmMain
     end
     object tsJSON: TTabSheet
       Caption = '&JSON'
-      ClientHeight = 497
+      ClientHeight = 494
       ClientWidth = 787
       inline SynEdit: TSynEdit
         Left = 0

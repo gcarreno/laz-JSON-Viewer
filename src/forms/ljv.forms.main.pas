@@ -40,9 +40,14 @@ uses
 , PairSplitter
 , JSONPropStorage
 , ActnList
-, StdActns, ComCtrls, SynEdit, SynHighlighterJScript
+, StdActns
+, ComCtrls
+, SynEdit
+, SynHighlighterJScript
 , fpjson
 , VirtualTrees
+//, DefaultTranslator
+, LCLTranslator
 ;
 
 type
@@ -97,6 +102,7 @@ type
     procedure ClosePropStorage;
 
     procedure ClearLabels;
+    procedure ClearValuePanel;
     procedure CorrectPairSplitterCursor;
     procedure ProcessParams;
     procedure UpdateFileList;
@@ -236,8 +242,6 @@ begin
 end;
 
 procedure TfrmMain.lbFilesSelectionChange(Sender: TObject; User: boolean);
-var
-  index: Integer;
 begin
   if User then
   begin
@@ -247,13 +251,7 @@ begin
   begin
     Caption:= Format(rsFormCaptionFile, [FFileList[lbFiles.ItemIndex], cVersion]);
     ClearLabels;
-    for index:=0 to pred(panValue.ComponentCount) do
-    begin
-      if Assigned(panValue.Components[index]) then
-      begin
-        panValue.Components[index].Free;
-      end;
-    end;
+    ClearValuePanel;
     LoadFile(FFileList[lbFiles.ItemIndex]);
     UpdateTree;
   end;
@@ -532,6 +530,14 @@ begin
 {$IFDEF WINDOWS}
   actFileExit.ShortCut := KeyToShortCut(VK_X, [ssAlt]);
 {$ENDIF}
+end;
+
+procedure TfrmMain.ClearValuePanel;
+begin
+  while panValue.ComponentCount > 0 do
+  begin
+    panValue.Components[0].Free;
+  end;
 end;
 
 function TfrmMain.FormatBytes(ABytes: Int64): String;
