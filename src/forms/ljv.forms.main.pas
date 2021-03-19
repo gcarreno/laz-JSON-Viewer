@@ -47,7 +47,7 @@ uses
 , fpjson
 , VirtualTrees
 //, DefaultTranslator
-, LCLTranslator
+//, LCLTranslator
 ;
 
 type
