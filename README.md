@@ -23,10 +23,10 @@ Simple application to view a JSON file.
 3. View JSON in text format, JSON Tab
 4. Drag and Drop files unto the application
 5. Multiple interpretations of the value
-  - Numbers formated and unformated
-  - Numbers displayed in Binary and Hexadecimal
-  - Numbers displayed in Bytes (B, KB, MB, GB, TB)
-  - Integer numbers displayed as date (UnixTime)
+    - Numbers formated and unformated
+    - Numbers displayed in Binary and Hexadecimal
+    - Numbers displayed in Bytes (B, KB, MB, GB, TB)
+    - Integer numbers displayed as date (UnixTime)
 
 ## Keys
 
