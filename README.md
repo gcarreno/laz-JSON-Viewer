@@ -51,7 +51,9 @@ application/json=jsonviewer.desktop
 
 ### Windows
 
-At the moment I don't have an answer. Need to consult some Windows gurus.
+At the moment I don't have an answer on how to do it manually. Need to consult some Windows gurus.
+
+Nonetheless, the Windows Setup binary provided will ask you if you want to make it the default viewer for `JSON` files.
 
 ## Screenshots
 - Tree view
