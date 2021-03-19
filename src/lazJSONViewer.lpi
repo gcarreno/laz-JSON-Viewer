@@ -20,13 +20,13 @@
     </General>
     <i18n>
       <EnableI18N Value="True"/>
-      <OutDir Value="i18n"/>
+      <OutDir Value="locale"/>
     </i18n>
     <VersionInfo>
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="9"/>
-      <BuildNr Value="37"/>
+      <BuildNr Value="38"/>
       <Language Value="0809"/>
     </VersionInfo>
     <BuildModes Count="3">

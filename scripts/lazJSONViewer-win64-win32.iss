@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Laz JSON Viewer"
-#define MyAppVersion "0.1.9.37"
+#define MyAppVersion "0.1.9.38"
 #define MyAppPublisher "Gustavo Carreno"
 #define MyAppURL "https://github.com/gcarreno/laz-JSON-Viewer"
 #define MyAppExeName "lazJSONViewer.exe"
@@ -37,7 +37,7 @@ ArchitecturesInstallIn64BitMode=x64
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
-;Name: "portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
+Name: "portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
@@ -45,7 +45,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "D:\Programming\laz-JSON-Viewer\bin\x86_64\win64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: Is64BitInstallMode
 Source: "D:\Programming\laz-JSON-Viewer\bin\i386\win32\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; Check: not Is64BitInstallMode
-Source: "D:\Programming\laz-JSON-Viewer\src\i18n\*.po"; DestDir: "{app}\i18n"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\Programming\laz-JSON-Viewer\src\locale\*.po"; DestDir: "{app}\locale"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]

@@ -46,8 +46,7 @@ uses
 , SynHighlighterJScript
 , fpjson
 , VirtualTrees
-//, DefaultTranslator
-//, LCLTranslator
+, DefaultTranslator
 ;
 
 type
