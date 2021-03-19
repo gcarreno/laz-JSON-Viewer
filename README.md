@@ -11,6 +11,7 @@ Simple application to view a JSON file.
 
 - [Features](#features)
 - [Keys](#keys)
+- [Translations](#translations)
 - [Setup as default viewer](#setup-as-default-viewer)
   - [Linux (Unbuntu)](#linux-ubuntu)
   - [Windows](#windows)
@@ -34,6 +35,13 @@ Simple application to view a JSON file.
 - The `Escape` key exits the application.
 - On Linux the `Ctrl+Q` key combination exits the application.
 - On Windows the `Atl+X` key combination exits the application.
+
+## Translations
+
+At the moment the available translations are for:
+- Portuguese(Portugal)
+
+If you like this application and are willing to translate it, I would be immensely grateful towards that effort!!
 
 ## Setup as default viewer
 
