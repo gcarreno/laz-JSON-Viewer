@@ -5,8 +5,8 @@ on:
   push:
     paths-ignore:
       - "README.md"
-      - "src/locale/*"
-      - "scripts/*"
+      - "src/locale/**"
+      - "scripts/**"
     branches:
       - master
       - releases/*
