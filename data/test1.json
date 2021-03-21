@@ -4,6 +4,7 @@
     "TestInt64" : 123124125126,
     "TestFloat" : 120.3,
     "TestString" : "String Value",
+    "TestUTF8String" : "Não dou o meu pão a nenhum cão, né?",
     "TestBoolean" : false,
     "TestArray" : [
         null,

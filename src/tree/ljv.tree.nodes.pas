@@ -39,8 +39,8 @@ type
   TTreeNode = record
     NodeType: TJSONtype;
     NodeIndex: Int64;
-    NodePath: String;
-    NodeName: String;
+    NodePath: UTF8String;
+    NodeName: UTF8String;
     NodeData: TJSONData;
   end;
 

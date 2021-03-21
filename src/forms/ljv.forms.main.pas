@@ -80,22 +80,22 @@ type
     procedure actViewTreeJSONExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure FormDropFiles(Sender: TObject; const FileNames: array of string);
+    procedure FormDropFiles(Sender: TObject; const FileNames: array of UTF8String);
     procedure lbFilesSelectionChange(Sender: TObject; User: boolean);
     procedure vstJSONChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
     procedure vstJSONGetNodeDataSize(Sender: TBaseVirtualTree;
       var NodeDataSize: Integer);
     procedure vstJSONGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
-      Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
+      Column: TColumnIndex; TextType: TVSTTextType; var CellText: UTF8String);
   private
     FJSON: TJSONData;
-    FFileList: Array of String;
+    FFileList: Array of UTF8String;
 
     procedure SetupShortcuts;
 
-    procedure AddFile(const AFilename: String);
+    procedure AddFile(const AFilename: UTF8String);
     procedure ClearTree;
-    function FormatBytes(ABytes: Int64): String;
+    function FormatBytes(ABytes: Int64): UTF8String;
 
     procedure OpenPropStorage;
     procedure ClosePropStorage;
@@ -105,13 +105,13 @@ type
     procedure CorrectPairSplitterCursor;
     procedure ProcessParams;
     procedure UpdateFileList;
-    procedure LoadFile(const AFilename: String);
+    procedure LoadFile(const AFilename: UTF8String);
     procedure UpdateTree;
     procedure UpdateTreeFromNode(const ANode: PVirtualNode;
-      const AJSONData: TJSONData; const APath: String);
+      const AJSONData: TJSONData; const APath: UTF8String);
     procedure ShowValue(const AJSONData: TJSONData);
     function MyIntegerToBinary(const AInteger: Int64;
-      const ADigits: Integer): String;
+      const ADigits: Integer): UTF8String;
   public
 
   end;
@@ -227,9 +227,9 @@ begin
 end;
 
 procedure TfrmMain.FormDropFiles(Sender: TObject;
-  const FileNames: array of string);
+  const FileNames: array of UTF8String);
 var
-  filename: String;
+  filename: UTF8String;
 begin
   for filename in FileNames do
   begin
@@ -259,7 +259,7 @@ end;
 procedure TfrmMain.vstJSONChange(Sender: TBaseVirtualTree; Node: PVirtualNode);
 var
   treeNode: PTreeNode;
-  sName: String;
+  sName: UTF8String;
   iIndex: Int64;
   count: Integer;
 begin
@@ -336,7 +336,7 @@ begin
 end;
 
 procedure TfrmMain.vstJSONGetText(Sender: TBaseVirtualTree; Node: PVirtualNode;
-  Column: TColumnIndex; TextType: TVSTTextType; var CellText: String);
+  Column: TColumnIndex; TextType: TVSTTextType; var CellText: UTF8String);
 var
   treeNode: PTreeNode;
   jNumber: TJSONNumber;
@@ -539,7 +539,7 @@ begin
   end;
 end;
 
-function TfrmMain.FormatBytes(ABytes: Int64): String;
+function TfrmMain.FormatBytes(ABytes: Int64): UTF8String;
 var
   dSize: Double;
 begin
@@ -575,11 +575,11 @@ begin
   end;
 end;
 
-procedure TfrmMain.AddFile(const AFilename: String);
+procedure TfrmMain.AddFile(const AFilename: UTF8String);
 var
   len: Integer;
   isDuplicate: Boolean;
-  filename: String;
+  filename: UTF8String;
 begin
   if Pos('*', AFilename) > 0 then
   begin
@@ -653,7 +653,7 @@ procedure TfrmMain.ProcessParams;
 var
   index: Integer;
   params: Integer;
-  param: String;
+  param: UTF8String;
 begin
   params:= ParamCount;
   for index:= 1 to params do
@@ -665,7 +665,7 @@ end;
 
 procedure TfrmMain.UpdateFileList;
 var
-  filename: String;
+  filename: UTF8String;
 begin
   if lbFiles.Count > 0 then
   begin
@@ -677,7 +677,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.LoadFile(const AFilename: String);
+procedure TfrmMain.LoadFile(const AFilename: UTF8String);
 var
   JSONFileStream: TFileStream;
   JSONStrings: TStringList;
@@ -730,7 +730,7 @@ begin
 end;
 
 procedure TfrmMain.UpdateTreeFromNode(const ANode: PVirtualNode;
-  const AJSONData: TJSONData; const APath: String);
+  const AJSONData: TJSONData; const APath: UTF8String);
 var
   index: Integer;
   node: PVirtualNode;
@@ -997,9 +997,9 @@ begin
 end;
 
 function TfrmMain.MyIntegerToBinary(const AInteger: Int64;
-  const ADigits: Integer): String;
+  const ADigits: Integer): UTF8String;
 var
-  str: String;
+  str: UTF8String;
   idx: Integer;
 begin
   Result:= '';

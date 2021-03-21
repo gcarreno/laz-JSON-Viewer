@@ -36,12 +36,12 @@ uses
 , jsonscanner
 ;
 
-function GetJSONData(const aJSON: String): TJSONData;
+function GetJSONData(const aJSON: UTF8String): TJSONData;
 function GetJSONData(const aStream: TStream): TJSONData;
 
 implementation
 
-function GetJSONData(const aJSON: String): TJSONData;
+function GetJSONData(const aJSON: UTF8String): TJSONData;
 var
   jParser: TJSONParser;
 begin
