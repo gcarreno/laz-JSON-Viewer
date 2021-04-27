@@ -16,18 +16,22 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
-        operating-system: [ubuntu-latest,windows-latest]
-        lazarus-versions: [stable, 2.0.10, 2.0.6]
+        operating-system: [ubuntu-latest,windows-latest,macos-latest]
+        lazarus-versions: [stable, 2.0.10]
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
     - name: Install Lazarus
-      uses: gcarreno/setup-lazarus@v2.2.9
+      uses: gcarreno/setup-lazarus@v3.0.1
       with:
         lazarus-version: ${{ matrix.lazarus-versions }}
         include-packages: "LCLExtensions, VirtualTreeView V5"
     - name: Build the Main App
+      if: ${{ matrix.operating-system != 'macos-latest' }}
       run: lazbuild --bm=Release "src/lazJSONViewer.lpi"
+    - name: Build the Main App (macOS)
+      if: ${{ matrix.operating-system == 'macos-latest' }}
+      run: lazbuild --bm=Release --ws=cocoa "src/lazJSONViewer.lpi"
 #    - name: Build the Test App
 #      run: lazbuild --bm=Release "tests/testlazJSONViewer.lpi"
 #    - name: Run the Test App
