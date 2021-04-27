@@ -22,7 +22,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
     - name: Install Lazarus
-      uses: gcarreno/setup-lazarus@v3.0.1
+      uses: gcarreno/setup-lazarus@v3.0.2
       with:
         lazarus-version: ${{ matrix.lazarus-versions }}
         include-packages: "LCLExtensions, VirtualTreeView V5"
