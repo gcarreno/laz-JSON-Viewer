@@ -7,7 +7,7 @@ msgstr ""
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "Last-Translator: Gustavo Carreno <guscarreno@gmail.com>\n"
 "Language: pt_PT\n"
 
@@ -26,12 +26,12 @@ msgstr "Valor"
 #: ljv.forms.main.rsformcaption
 #, object-pascal-format
 msgid "JSON Viewer v%s"
-msgstr "Vizializador JSON v%s"
+msgstr "Visualizador JSON v%s"
 
 #: ljv.forms.main.rsformcaptionfile
 #, object-pascal-format
 msgid "JSON Viewer (%s) v%s"
-msgstr "Vizializador JSON (%s) v%s"
+msgstr "Visualizador JSON (%s) v%s"
 
 #: ljv.forms.main.rsgigabytes
 msgid " GB"
@@ -207,4 +207,3 @@ msgstr "&JSON"
 #: tfrmmain.tstree.caption
 msgid "&Tree"
 msgstr "&Árvore"
-
