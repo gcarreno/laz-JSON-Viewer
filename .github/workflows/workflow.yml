@@ -28,10 +28,10 @@ jobs:
         include-packages: "LCLExtensions, VirtualTreeView V5"
     - name: Build the Main App
       if: ${{ matrix.operating-system != 'macos-latest' }}
-      run: lazbuild --bm=Release "src/lazJSONViewer.lpi"
+      run: lazbuild -B --bm=Release "src/lazJSONViewer.lpi"
     - name: Build the Main App (macOS)
       if: ${{ matrix.operating-system == 'macos-latest' }}
-      run: lazbuild --bm=Release --ws=cocoa "src/lazJSONViewer.lpi"
+      run: lazbuild -B --bm=Release --ws=cocoa "src/lazJSONViewer.lpi"
 #    - name: Build the Test App
 #      run: lazbuild --bm=Release "tests/testlazJSONViewer.lpi"
 #    - name: Run the Test App
