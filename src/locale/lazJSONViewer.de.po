@@ -1,0 +1,210 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.3\n"
+"Last-Translator: Fechi92 <fechi1712@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+
+#: ljv.forms.main.rsbytes
+msgid " B"
+msgstr "B"
+
+#: ljv.forms.main.rscaptionpath
+msgid "Path"
+msgstr "Pfad"
+
+#: ljv.forms.main.rscaptionvalue
+msgid "Value"
+msgstr "Wert"
+
+#: ljv.forms.main.rsformcaption
+#, object-pascal-format
+msgid "JSON Viewer v%s"
+msgstr "JSON Betrachter v%s"
+
+#: ljv.forms.main.rsformcaptionfile
+#, object-pascal-format
+msgid "JSON Viewer (%s) v%s"
+msgstr "JSON Betrachter (%s) v%s"
+
+#: ljv.forms.main.rsgigabytes
+msgid " GB"
+msgstr "GB"
+
+#: ljv.forms.main.rskilobytes
+msgid " KB"
+msgstr "KB"
+
+#: ljv.forms.main.rslabelbinary
+msgid "Binary"
+msgstr "Binär"
+
+#: ljv.forms.main.rslabelbytes
+msgid "Bytes"
+msgstr "Bytes"
+
+#: ljv.forms.main.rslabelcountarray
+#, object-pascal-format
+msgid "Items: %d"
+msgstr "Elemente: %d"
+
+#: ljv.forms.main.rslabelcountempty
+msgid "Member Count"
+msgstr "Mitgliederzahl"
+
+#: ljv.forms.main.rslabelcountna
+msgid "N/A"
+msgstr "K.A."
+
+#: ljv.forms.main.rslabelcountobject
+#, object-pascal-format
+msgid "Members: %d"
+msgstr "Mitglieder: %d"
+
+#: ljv.forms.main.rslabeldatetime
+msgid "Date"
+msgstr "Datum"
+
+#: ljv.forms.main.rslabelformated
+msgid "Formated"
+msgstr "Formatiert"
+
+#: ljv.forms.main.rslabelhexadecimal
+msgid "Hexadecimal"
+msgstr "Hexadezimal"
+
+#: ljv.forms.main.rslabelnamearrayitem
+#, object-pascal-format
+msgid "Item: %d"
+msgstr "Element: %d"
+
+#: ljv.forms.main.rslabelnameempty
+msgid "Node Name/Index"
+msgstr "Knoten Name/Index"
+
+#: ljv.forms.main.rslabelnamename
+#, object-pascal-format
+msgid "Name: \"%s\""
+msgstr "Name: \"%s\""
+
+#: ljv.forms.main.rslabelscientific
+msgid "Scientific"
+msgstr "Wissenschaftlich"
+
+#: ljv.forms.main.rslabeltype
+#, object-pascal-format
+msgid "Type: %s"
+msgstr "Typ: %s"
+
+#: ljv.forms.main.rslabeltypeempty
+msgid "Node Type"
+msgstr "Knoten-Typ"
+
+#: ljv.forms.main.rsmegabytes
+msgid " MB"
+msgstr "MB"
+
+#: ljv.forms.main.rsterabytes
+msgid " TB"
+msgstr "TB"
+
+#: ljv.forms.main.rstypearray
+msgid "Array"
+msgstr "Anordnung"
+
+#: ljv.forms.main.rstypeboolean
+msgid "Boolean"
+msgstr "Boolesche"
+
+#: ljv.forms.main.rstypenull
+msgid "Null"
+msgstr "Null"
+
+#: ljv.forms.main.rstypenumberfloat
+msgid "Number (Float)"
+msgstr "Zahl (Float)"
+
+#: ljv.forms.main.rstypenumberint64
+msgid "Number (Int64)"
+msgstr "Zahl (Int64)"
+
+#: ljv.forms.main.rstypenumberinteger
+msgid "Number (Integer)"
+msgstr "Zahl (Integer)"
+
+#: ljv.forms.main.rstypenumberqword
+msgid "Number (QWord)"
+msgstr "Nummer (QWord)"
+
+#: ljv.forms.main.rstypeobject
+msgid "Object"
+msgstr "Objekt"
+
+#: ljv.forms.main.rstypestring
+msgid "String"
+msgstr "Zeichenfolge"
+
+#: ljv.forms.main.rstypeunknown
+msgctxt "ljv.forms.main.rstypeunknown"
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: ljv.forms.main.rsvstnocolumns
+msgid "There are no Columns"
+msgstr "Es sind keine Spalten vorhanden"
+
+#: ljv.forms.main.rsvstunknown
+msgctxt "ljv.forms.main.rsvstunknown"
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: tfrmmain.actfileexit.caption
+msgid "E&xit"
+msgstr "Be&enden"
+
+#: tfrmmain.actfileexit.hint
+msgid "Exit"
+msgstr "beenden"
+
+#: tfrmmain.actviewtreejson.caption
+msgid "View Tree/JSON"
+msgstr "Ansichtsbaum/JSON"
+
+#: tfrmmain.caption
+msgid "frmMain"
+msgstr "frmMain"
+
+#: tfrmmain.lblcount.caption
+msgid "lblCount"
+msgstr "lblCount"
+
+#: tfrmmain.lblname.caption
+msgid "lblName"
+msgstr "lblName"
+
+#: tfrmmain.lblpath.caption
+msgid "lblPath"
+msgstr "lblPath"
+
+#: tfrmmain.lbltype.caption
+msgid "lblType"
+msgstr "lblType"
+
+#: tfrmmain.lblvalue.caption
+msgid "lblValue"
+msgstr "lblValue"
+
+#: tfrmmain.tsjson.caption
+msgid "&JSON"
+msgstr "&JSON"
+
+#: tfrmmain.tstree.caption
+msgid "&Tree"
+msgstr "&Baum"
