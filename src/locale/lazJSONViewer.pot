@@ -33,11 +33,11 @@ msgid "JSON Viewer (%s) v%s"
 msgstr ""
 
 #: ljv.forms.main.rsgigabytes
-msgid " GB"
+msgid " GiB"
 msgstr ""
 
 #: ljv.forms.main.rskilobytes
-msgid " KB"
+msgid " KiB"
 msgstr ""
 
 #: ljv.forms.main.rslabelbinary
@@ -106,11 +106,11 @@ msgid "Node Type"
 msgstr ""
 
 #: ljv.forms.main.rsmegabytes
-msgid " MB"
+msgid " MiB"
 msgstr ""
 
 #: ljv.forms.main.rsterabytes
-msgid " TB"
+msgid " TiB"
 msgstr ""
 
 #: ljv.forms.main.rstypearray

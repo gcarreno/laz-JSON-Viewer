@@ -159,10 +159,10 @@ resourcestring
   rsCaptionPath = 'Path';
 
   rsBytes = ' B';
-  rsKiloBytes = ' KB';
-  rsMegaBytes = ' MB';
-  rsGigaBytes = ' GB';
-  rsTeraBytes = ' TB';
+  rsKiloBytes = ' KiB';
+  rsMegaBytes = ' MiB';
+  rsGigaBytes = ' GiB';
+  rsTeraBytes = ' TiB';
 
   rsTypeUnknown = 'Unknown';
   rsTypeNumberInteger = 'Number (Integer)';
@@ -540,37 +540,43 @@ begin
 end;
 
 function TfrmMain.FormatBytes(ABytes: Int64): UTF8String;
+const
+  OneKiloByte = 1024;
+  OneMegaByte = OneKiloByte * 1024;
+  OneGigaByte = OneMegaByte * 1024;
+  OneTeraByte = OneGigaByte * 1024;
+  OnePetaByte = OneTeraByte * 1024;
 var
   dSize: Double;
 begin
   Result := '';
   dSize := 0.0;
-  if ABytes < 1024 then
+  if ABytes < OneKiloByte then
   begin
     Result := IntToStr(ABytes) + rsBytes;
     exit;
   end;
-  if ABytes < (1024*1024) then
+  if ABytes < OneMegaByte then
   begin
-    dSize := ABytes / 1024;
+    dSize := ABytes / OneKiloByte;
     Result := FormatFloat('0.##', dSize) + rsKiloBytes;
     exit;
   end;
-  if ABytes < (1024*1024*1024) then
+  if ABytes < OneGigaByte then
   begin
-    dSize := ABytes / 1024 / 1024;
+    dSize := ABytes / OneMegaByte;
     Result := FormatFloat('0.##', dSize) + rsMegaBytes;
     exit;
   end;
-  if ABytes < (1024*1024*1024*1024) then
+  if ABytes < OneTeraByte then
   begin
-    dSize := ABytes / 1024 / 1024 / 1024;
+    dSize := ABytes / OneGigaByte;
     Result := FormatFloat('0.##', dSize) + rsGigaBytes;
     exit;
   end;
-  if ABytes < (1024*1024*1024*1024*1024) then
+  if ABytes < OnePetaByte then
   begin
-    dSize := ABytes / 1024 / 1024 / 1024 / 1024;
+    dSize := ABytes / OneTeraByte;
     Result := FormatFloat('0.##', dSize) + rsTeraBytes;
   end;
 end;

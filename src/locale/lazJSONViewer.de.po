@@ -35,12 +35,16 @@ msgid "JSON Viewer (%s) v%s"
 msgstr "JSON Betrachter (%s) v%s"
 
 #: ljv.forms.main.rsgigabytes
-msgid " GB"
-msgstr "GB"
+#, fuzzy
+#| msgid " GB"
+msgid " GiB"
+msgstr "GiB"
 
 #: ljv.forms.main.rskilobytes
-msgid " KB"
-msgstr "KB"
+#, fuzzy
+#| msgid " KB"
+msgid " KiB"
+msgstr "KiB"
 
 #: ljv.forms.main.rslabelbinary
 msgid "Binary"
@@ -108,12 +112,16 @@ msgid "Node Type"
 msgstr "Knoten-Typ"
 
 #: ljv.forms.main.rsmegabytes
-msgid " MB"
-msgstr "MB"
+#, fuzzy
+#| msgid " MB"
+msgid " MiB"
+msgstr "MiB"
 
 #: ljv.forms.main.rsterabytes
-msgid " TB"
-msgstr "TB"
+#, fuzzy
+#| msgid " TB"
+msgid " TiB"
+msgstr "TiB"
 
 #: ljv.forms.main.rstypearray
 msgid "Array"
@@ -208,3 +216,4 @@ msgstr "&JSON"
 #: tfrmmain.tstree.caption
 msgid "&Tree"
 msgstr "&Baum"
+

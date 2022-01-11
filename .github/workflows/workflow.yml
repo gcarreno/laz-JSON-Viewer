@@ -17,12 +17,12 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest,windows-latest,macos-latest]
-        lazarus-versions: [stable, 2.0.10]
+        lazarus-versions: [stable, 2.0.12, 2.0.10]
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
     - name: Install Lazarus
-      uses: gcarreno/setup-lazarus@v3.0.2
+      uses: gcarreno/setup-lazarus@v3.0.16
       with:
         lazarus-version: ${{ matrix.lazarus-versions }}
         include-packages: "LCLExtensions, VirtualTreeView V5"

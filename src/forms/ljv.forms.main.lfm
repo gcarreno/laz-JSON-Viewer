@@ -11,7 +11,7 @@ object frmMain: TfrmMain
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
   SessionProperties = 'Top;Left;Height;Width;WindowState'
-  LCLVersion = '2.1.0.0'
+  LCLVersion = '2.3.0.0'
   object lbFiles: TListBox
     Left = 0
     Height = 528
@@ -47,7 +47,6 @@ object frmMain: TfrmMain
       Top = 8
       Width = 48
       Caption = 'lblPath'
-      ParentColor = False
     end
   end
   object pcMain: TPageControl
@@ -124,7 +123,6 @@ object frmMain: TfrmMain
               Top = 32
               Width = 49
               Caption = 'lblType'
-              ParentColor = False
             end
             object lblName: TLabel
               Left = 8
@@ -132,7 +130,6 @@ object frmMain: TfrmMain
               Top = 8
               Width = 57
               Caption = 'lblName'
-              ParentColor = False
             end
             object lblCount: TLabel
               Left = 8
@@ -140,7 +137,6 @@ object frmMain: TfrmMain
               Top = 56
               Width = 57
               Caption = 'lblCount'
-              ParentColor = False
             end
           end
           object panValue: TPanel
@@ -157,7 +153,6 @@ object frmMain: TfrmMain
             Top = 88
             Width = 54
             Caption = 'lblValue'
-            ParentColor = False
           end
         end
       end
