@@ -30,6 +30,7 @@ jobs:
       with:
         lazarus-version: ${{ matrix.lazarus-versions }}
         include-packages: "VirtualTreeView V5"
+        with-cache: false
 
     - name: Build the Main App GTK2 (Ubuntu)
       if: ${{ matrix.operating-system == 'ubuntu-latest' }}
