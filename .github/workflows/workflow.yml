@@ -2,6 +2,8 @@ name: build-test
 
 on:
   pull_request:
+    branches:
+      - master
   push:
     paths-ignore:
       - "README.md"
@@ -17,22 +19,89 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest,windows-latest,macos-latest]
-        lazarus-versions: [stable, 2.0.12]
+        lazarus-versions: [stable, 2.2.0, 2.0.12]
+        
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
+      
     - name: Install Lazarus
-      uses: gcarreno/setup-lazarus@v3.0.16
+      uses: gcarreno/setup-lazarus@v3.2.7
       with:
         lazarus-version: ${{ matrix.lazarus-versions }}
         include-packages: "LCLExtensions, VirtualTreeView V5"
-    - name: Build the Main App
-      if: ${{ matrix.operating-system != 'macos-latest' }}
+        
+    - name: Build the Main App GTK2 (Ubuntu)
+      if: ${{ matrix.operating-system == 'ubuntu-latest' }}
+      run: |
+        lazbuild -B --bm=Release "src/lazJSONViewer.lpi"
+        mv bin/lazJSONViewer bin/lazJSONViewer-gtk2
+
+    - name: Build the Main App Qt5 (Ubuntu)
+      if: ${{ matrix.operating-system == 'ubuntu-latest' }}
+      run: |
+        sudo apt update
+        sudo apt install libqt5pas-dev -y
+        lazbuild -B --bm=Release --ws=qt5 "src/lazJSONViewer.lpi"
+        mv bin/lazJSONViewer bin/lazJSONViewer-qt5
+      
+    - name: Build the Main App (Windows)
+      if: ${{ matrix.operating-system == 'windows-latest' }}
       run: lazbuild -B --bm=Release "src/lazJSONViewer.lpi"
+
     - name: Build the Main App (macOS)
       if: ${{ matrix.operating-system == 'macos-latest' }}
       run: lazbuild -B --bm=Release --ws=cocoa "src/lazJSONViewer.lpi"
-#    - name: Build the Test App
-#      run: lazbuild --bm=Release "tests/testlazJSONViewer.lpi"
-#    - name: Run the Test App
-#      run: bin/testlazJSONViewer "--all" "--format=plain"
+
+    - name: Upload binary (Windows)
+      if: ${{ (matrix.operating-system == 'windows-latest')  &&  (matrix.lazarus-versions == 'stable') }}
+      uses: actions/upload-artifact@v3
+      with:
+        name: lazJSONViewer
+        path: bin/lazJSONViewer.exe
+
+    - name: Upload binary (Ubuntu)
+      if: ${{ (matrix.operating-system == 'ubuntu-latest')  &&  (matrix.lazarus-versions == 'stable') }}
+      uses: actions/upload-artifact@v3
+      with:
+        name: lazJSONViewer
+        path: bin/lazJSONViewer-*
+        
+  package-release:
+    if: contains(github.ref, '/tags/')
+
+    name: Package and create GitHub Release
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+    - name: Download the Release binary
+      uses: actions/download-artifact@v3
+
+    - name: List files
+      run: ls -alF lazJSONViewer
+
+    - name: Create release files
+      run: |
+        cd lazJSONViewer
+        chmod +x lazJSONViewer
+        zip -r lazJSONViewer-${{ steps.vars.outputs.tag }}-x86_64-win64.zip lazJSONViewer.exe
+        tar -zcvf lazJSONViewer-GTK2-${{ steps.vars.outputs.tag }}-x86_64-linux.tar.gz lazJSONViewer-gtk2
+        tar -zcvf lazJSONViewer-Qt5-${{ steps.vars.outputs.tag }}-x86_64-linux.tar.gz lazJSONViewer-qt5
+    - name: Create GitHub release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: lazJSONViewer ${{ steps.vars.outputs.tag }}
+        body_path: release-notes.md
+        files: |
+          lazJSONViewer/*.tar.gz
+          lazJSONViewer/*.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
