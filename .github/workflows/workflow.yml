@@ -19,18 +19,18 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest,windows-latest,macos-latest]
-        lazarus-versions: [stable, 2.2.0, 2.0.12]
-        
+        lazarus-versions: [stable, 2.2.2, 2.0.12]
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
-      
+
     - name: Install Lazarus
       uses: gcarreno/setup-lazarus@v3.2.7
       with:
         lazarus-version: ${{ matrix.lazarus-versions }}
         include-packages: "VirtualTreeView V5"
-        
+
     - name: Build the Main App GTK2 (Ubuntu)
       if: ${{ matrix.operating-system == 'ubuntu-latest' }}
       run: |
@@ -44,7 +44,7 @@ jobs:
         sudo apt install libqt5pas-dev -y
         lazbuild -B --bm=Release --ws=qt5 "src/lazJSONViewer.lpi"
         mv bin/lazJSONViewer bin/lazJSONViewer-qt5
-      
+
     - name: Build the Main App (Windows)
       if: ${{ matrix.operating-system == 'windows-latest' }}
       run: lazbuild -B --bm=Release "src/lazJSONViewer.lpi"
@@ -66,7 +66,7 @@ jobs:
       with:
         name: lazJSONViewer
         path: bin/lazJSONViewer-*
-        
+
   package-release:
     if: contains(github.ref, '/tags/')
 
